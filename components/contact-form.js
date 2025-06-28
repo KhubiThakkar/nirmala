@@ -56,6 +56,7 @@ export default function ContactForm() {
                     id='message'
                     name='message'
                     rows={6}
+                    style={{ resize: "none" }}
                     className='w-full px-4 sm:px-6 py-4 border border-warmBrown/20 rounded-xl focus:ring-2 focus:ring-warmBrown/30 focus:border-warmBrown transition-all duration-300 bg-white/50 backdrop-blur-sm'
                     placeholder='Tell us about your vision and requirements...'
                 ></textarea>

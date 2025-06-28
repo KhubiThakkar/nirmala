@@ -336,7 +336,7 @@ export default function HomePage() {
                     </div>
 
                     <div className='grid lg:grid-cols-2 gap-16'>
-                        <Card className='elegant-card p-10'>
+                        <Card className='elegant-card p-10 bg-white'>
                             <ContactForm />
                         </Card>
 

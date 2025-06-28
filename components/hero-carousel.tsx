@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 // import { ChevronLeft, ChevronRight } from "lucide-react";
 // import { Button } from "@/components/ui/button";
@@ -35,6 +35,12 @@ const carouselData = [
 export function HeroCarousel() {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [isAnimating, setIsAnimating] = useState(false);
+    const [touchStart, setTouchStart] = useState<number | null>(null);
+    const [touchEnd, setTouchEnd] = useState<number | null>(null);
+    const carouselRef = useRef<HTMLDivElement>(null);
+
+    // Minimum swipe distance (in px)
+    const minSwipeDistance = 50;
 
     const nextSlide = () => {
         if (isAnimating) return;
@@ -56,6 +62,31 @@ export function HeroCarousel() {
         setCurrentSlide(index);
     };
 
+    // Touch event handlers for swipe functionality
+    const onTouchStart = (e: React.TouchEvent) => {
+        setTouchEnd(null);
+        setTouchStart(e.targetTouches[0].clientX);
+    };
+
+    const onTouchMove = (e: React.TouchEvent) => {
+        setTouchEnd(e.targetTouches[0].clientX);
+    };
+
+    const onTouchEnd = () => {
+        if (!touchStart || !touchEnd) return;
+
+        const distance = touchStart - touchEnd;
+        const isLeftSwipe = distance > minSwipeDistance;
+        const isRightSwipe = distance < -minSwipeDistance;
+
+        if (isLeftSwipe) {
+            nextSlide();
+        }
+        if (isRightSwipe) {
+            prevSlide();
+        }
+    };
+
     useEffect(() => {
         const timer = setTimeout(() => {
             setIsAnimating(false);
@@ -72,7 +103,13 @@ export function HeroCarousel() {
     }, []);
 
     return (
-        <div className='relative w-full h-screen overflow-hidden'>
+        <div
+            ref={carouselRef}
+            className='relative w-full h-screen overflow-hidden touch-pan-y'
+            onTouchStart={onTouchStart}
+            onTouchMove={onTouchMove}
+            onTouchEnd={onTouchEnd}
+        >
             {/* Carousel Images */}
             <div className='relative w-full h-full'>
                 {carouselData.map((slide, index) => (

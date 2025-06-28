@@ -69,7 +69,7 @@ export function PDFViewer({
                         </DialogTrigger>
                         <DialogContent className='max-w-4xl h-[80vh] bg-white border-warmBrown/20'>
                             {/* <DialogHeader className='items-center'> */}
-                            <DialogTitle className='flex items-center justify-between text-warmBrown grid grid-rows-1'>
+                            <DialogTitle className='items-center justify-between text-warmBrown grid grid-rows-1'>
                                 {title}
                                 {/* <Button
                                         variant='ghost'

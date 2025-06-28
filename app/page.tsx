@@ -16,6 +16,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { HeroCarousel } from "@/components/hero-carousel";
+import { PDFViewer } from "@/components/pdf-viewer";
 
 export default function HomePage() {
     return (
@@ -235,129 +236,20 @@ export default function HomePage() {
                         </p>
                     </div>
 
-                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
-                        {/* PDF Resource 1 */}
-                        <Card className='elegant-card hover:shadow-2xl transition-all duration-500 h-full'>
-                            <CardContent className='p-8 flex flex-col h-full'>
-                                <div className='aspect-[3/4] bg-gradient-to-br from-softPink/30 to-warmBrown/20 mb-8 rounded-xl flex items-center justify-center shadow-inner'>
-                                    <div className='text-center'>
-                                        <div className='text-3xl font-normal mb-3 text-warmBrown'>
-                                            NIRMALA
-                                        </div>
-                                        <div className='text-sm font-normal text-warmBrown/70'>
-                                            Complete Catalog
-                                        </div>
-                                    </div>
-                                </div>
-                                <h3 className='text-xl font-bold mb-4 text-warmBrown'>
-                                    Master Collection Catalog
-                                </h3>
-                                <p className='text-warmBrown/70 mb-6 text-base font-normal leading-relaxed flex-grow'>
-                                    Comprehensive showcase of our complete range
-                                    with detailed specifications and color
-                                    variations
-                                </p>
-                                <div className='flex gap-3 mt-auto'>
-                                    <Button
-                                        size='sm'
-                                        className='luxury-button flex-1 text-sm'
-                                    >
-                                        <Eye className='mr-2 h-4 w-4' />
-                                        Preview
-                                    </Button>
-                                    <Button
-                                        size='sm'
-                                        variant='outline'
-                                        className='luxury-button-outline flex-1 text-sm bg-transparent'
-                                    >
-                                        <Download className='mr-2 h-4 w-4' />
-                                        Download
-                                    </Button>
-                                </div>
-                            </CardContent>
-                        </Card>
+                    <div className='grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto'>
+                        <PDFViewer
+                            title='Nirmala Brochure'
+                            pdfUrl='/pdf/Nirmala.pdf'
+                            thumbnailUrl='/images/nirmala-brochure.png'
+                            description='Complete product catalog featuring our premium matt-finished surfaces and luxury kitchen solutions with detailed specifications and color variations.'
+                        />
 
-                        {/* PDF Resource 2 */}
-                        <Card className='elegant-card hover:shadow-2xl transition-all duration-500 h-full'>
-                            <CardContent className='p-8 flex flex-col h-full'>
-                                <div className='aspect-[3/4] bg-gradient-to-br from-warmBrown/20 to-softPink/30 mb-8 rounded-xl flex items-center justify-center shadow-inner'>
-                                    <div className='text-center'>
-                                        <div className='text-3xl font-normal mb-3 text-warmBrown'>
-                                            CARE
-                                        </div>
-                                        <div className='text-sm font-normal text-warmBrown/70'>
-                                            & Maintenance
-                                        </div>
-                                    </div>
-                                </div>
-                                <h3 className='text-xl font-bold mb-4 text-warmBrown'>
-                                    Premium Care Guide
-                                </h3>
-                                <p className='text-warmBrown/70 mb-6 text-base font-normal leading-relaxed flex-grow'>
-                                    Expert maintenance protocols to preserve the
-                                    exceptional quality and appearance of your
-                                    surfaces
-                                </p>
-                                <div className='flex gap-3 mt-auto'>
-                                    <Button
-                                        size='sm'
-                                        className='luxury-button flex-1 text-sm'
-                                    >
-                                        <Eye className='mr-2 h-4 w-4' />
-                                        Preview
-                                    </Button>
-                                    <Button
-                                        size='sm'
-                                        variant='outline'
-                                        className='luxury-button-outline flex-1 text-sm bg-transparent'
-                                    >
-                                        <Download className='mr-2 h-4 w-4' />
-                                        Download
-                                    </Button>
-                                </div>
-                            </CardContent>
-                        </Card>
-
-                        {/* PDF Resource 3 */}
-                        <Card className='elegant-card hover:shadow-2xl transition-all duration-500 h-full'>
-                            <CardContent className='p-8 flex flex-col h-full'>
-                                <div className='aspect-[3/4] bg-gradient-to-br from-warmBrown/30 to-softPink/20 mb-8 rounded-xl flex items-center justify-center shadow-inner'>
-                                    <div className='text-center'>
-                                        <div className='text-3xl font-normal mb-3 text-warmBrown'>
-                                            TECH
-                                        </div>
-                                        <div className='text-sm font-normal text-warmBrown/70'>
-                                            Specifications
-                                        </div>
-                                    </div>
-                                </div>
-                                <h3 className='text-xl font-bold mb-4 text-warmBrown'>
-                                    Technical Documentation
-                                </h3>
-                                <p className='text-warmBrown/70 mb-6 text-base font-normal leading-relaxed flex-grow'>
-                                    Detailed technical specifications and
-                                    professional installation guidelines for
-                                    optimal results
-                                </p>
-                                <div className='flex gap-3 mt-auto'>
-                                    <Button
-                                        size='sm'
-                                        className='luxury-button flex-1 text-sm'
-                                    >
-                                        <Eye className='mr-2 h-4 w-4' />
-                                        Preview
-                                    </Button>
-                                    <Button
-                                        size='sm'
-                                        variant='outline'
-                                        className='luxury-button-outline flex-1 text-sm bg-transparent'
-                                    >
-                                        <Download className='mr-2 h-4 w-4' />
-                                        Download
-                                    </Button>
-                                </div>
-                            </CardContent>
-                        </Card>
+                        <PDFViewer
+                            title='Relwood Brochure'
+                            pdfUrl='/pdf/Relwood-Brochure.pdf'
+                            thumbnailUrl='/images/relwood-brochure.png'
+                            description='Comprehensive showcase of our complete range with detailed specifications and premium wood finishes for discerning clients.'
+                        />
                     </div>
                 </div>
             </section>

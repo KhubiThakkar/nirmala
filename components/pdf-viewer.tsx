@@ -1,69 +1,105 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
-import { Download, Eye, X } from "lucide-react"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import {
+    Dialog,
+    DialogContent,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog";
+import { Download, Eye, X } from "lucide-react";
 
 interface PDFViewerProps {
-  title: string
-  pdfUrl: string
-  thumbnailUrl: string
-  description: string
+    title: string;
+    pdfUrl: string;
+    thumbnailUrl: string;
+    description: string;
 }
 
-export function PDFViewer({ title, pdfUrl, thumbnailUrl, description }: PDFViewerProps) {
-  const [isOpen, setIsOpen] = useState(false)
+export function PDFViewer({
+    title,
+    pdfUrl,
+    thumbnailUrl,
+    description,
+}: PDFViewerProps) {
+    const [isOpen, setIsOpen] = useState(false);
 
-  const handleDownload = () => {
-    // Create a temporary link element and trigger download
-    const link = document.createElement("a")
-    link.href = pdfUrl
-    link.download = `${title}.pdf`
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
-  }
+    const handleDownload = () => {
+        // Create a temporary link element and trigger download
+        const link = document.createElement("a");
+        link.href = pdfUrl;
+        link.download = `${title}.pdf`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
 
-  return (
-    <div className="border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
-      <div className="aspect-[3/4] bg-gray-100 relative overflow-hidden">
-        <img src={thumbnailUrl || "/placeholder.svg"} alt={title} className="w-full h-full object-cover" />
-      </div>
+    return (
+        <div className='elegant-card hover:shadow-2xl transition-all duration-500 border border-warmBrown/20 rounded-xl overflow-hidden bg-white flex flex-col'>
+            {/* Image Section */}
+            <div className='aspect-[3/4] bg-gradient-to-br from-softPink/20 to-warmBrown/10 relative overflow-hidden flex-shrink-0'>
+                <img
+                    src={thumbnailUrl || "/placeholder.svg"}
+                    alt={title}
+                    className='w-full h-full object-cover'
+                />
+                <div className='absolute inset-0 bg-gradient-to-t from-warmBrown/20 to-transparent'></div>
+            </div>
 
-      <div className="p-6">
-        <h3 className="text-lg font-bold mb-2">{title}</h3>
-        <p className="text-gray-600 mb-4 text-sm">{description}</p>
+            {/* Content Section */}
+            <div className='p-6 flex flex-col flex-1 min-h-0'>
+                <h3 className='text-xl font-bold mb-3 text-warmBrown'>
+                    {title}
+                </h3>
+                <p className='text-warmBrown/70 mb-4 text-sm font-normal leading-relaxed flex-1'>
+                    {description}
+                </p>
 
-        <div className="flex gap-2">
-          <Dialog open={isOpen} onOpenChange={setIsOpen}>
-            <DialogTrigger asChild>
-              <Button size="sm" className="flex-1 bg-black text-white hover:bg-gray-800">
-                <Eye className="mr-2 h-4 w-4" />
-                View
-              </Button>
-            </DialogTrigger>
-            <DialogContent className="max-w-4xl h-[80vh]">
-              <DialogHeader>
-                <DialogTitle className="flex items-center justify-between">
-                  {title}
-                  <Button variant="ghost" size="sm" onClick={() => setIsOpen(false)}>
-                    <X className="h-4 w-4" />
-                  </Button>
-                </DialogTitle>
-              </DialogHeader>
-              <div className="flex-1 bg-gray-100 rounded-lg overflow-hidden">
-                <iframe src={`${pdfUrl}#toolbar=1&navpanes=1&scrollbar=1`} className="w-full h-full" title={title} />
-              </div>
-            </DialogContent>
-          </Dialog>
+                {/* Buttons Section */}
+                <div className='flex gap-3 pt-2'>
+                    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+                        <DialogTrigger asChild>
+                            <Button className='flex-1 bg-warmBrown text-white hover:bg-warmBrown/80 transition-all duration-300 rounded-lg px-3 py-2 font-medium text-sm'>
+                                <Eye className='mr-2 h-4 w-4' />
+                                Preview
+                            </Button>
+                        </DialogTrigger>
+                        <DialogContent className='max-w-4xl h-[80vh] bg-white border-warmBrown/20'>
+                            <DialogHeader>
+                                <DialogTitle className='flex items-center justify-between text-warmBrown'>
+                                    {title}
+                                    <Button
+                                        variant='ghost'
+                                        size='sm'
+                                        onClick={() => setIsOpen(false)}
+                                        className='text-warmBrown hover:bg-warmBrown/10'
+                                    >
+                                        <X className='h-4 w-4' />
+                                    </Button>
+                                </DialogTitle>
+                            </DialogHeader>
+                            <div className='flex-1 bg-gray-100 rounded-lg overflow-hidden border border-warmBrown/10'>
+                                <iframe
+                                    src={`${pdfUrl}#toolbar=1&navpanes=1&scrollbar=1`}
+                                    className='w-full h-full'
+                                    title={title}
+                                />
+                            </div>
+                        </DialogContent>
+                    </Dialog>
 
-          <Button size="sm" variant="outline" className="flex-1" onClick={handleDownload}>
-            <Download className="mr-2 h-4 w-4" />
-            Download
-          </Button>
+                    <Button
+                        variant='outline'
+                        className='flex-1 border-2 border-warmBrown text-warmBrown hover:bg-warmBrown hover:text-white transition-all duration-300 rounded-lg px-3 py-2 font-medium text-sm'
+                        onClick={handleDownload}
+                    >
+                        <Download className='mr-2 h-4 w-4' />
+                        Download
+                    </Button>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  )
+    );
 }

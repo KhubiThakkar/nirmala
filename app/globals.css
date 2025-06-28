@@ -2,31 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Arista Pro Font Face Declarations */
-@font-face {
-    font-family: "Arista Pro";
-    src: url("/arista_pro/Arista-Pro-Light-trial.ttf") format("truetype");
-    font-weight: 300;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: "Arista Pro";
-    src: url("/arista_pro/Arista-Pro-Bold-trial.ttf") format("truetype");
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: "Arista Pro";
-    src: url("/arista_pro/Arista-Pro-Fat-trial.ttf") format("truetype");
-    font-weight: 900;
-    font-style: normal;
-    font-display: swap;
-}
-
 @layer base {
     * {
         @apply border-border;
@@ -35,7 +10,8 @@
     /* Base body styling */
     body {
         @apply bg-cream text-warmBrown;
-        font-family: var(--font-comfortaa), Arial, sans-serif;
+        font-family: var(--font-tajawal), Arial, sans-serif;
+        font-weight: 400;
         line-height: 1.6;
     }
 
@@ -46,7 +22,6 @@
     h4,
     h5,
     h6 {
-        /* font-family: "Arista Pro", Arial, sans-serif; */
         font-family: var(--font-didact), Arial, sans-serif;
         font-weight: 400;
         line-height: 1.2;
@@ -147,7 +122,7 @@ html {
     -webkit-text-stroke-width: 2px;
     text-shadow: 0 0 20px rgba(255, 255, 255, 0.1),
         0 0 40px rgba(255, 255, 255, 0.05);
-    font-family: var(--font-dm-serif-text), Arial, sans-serif;
+    font-family: var(--font-poppins), Arial, sans-serif;
     font-weight: 300;
     letter-spacing: 0.1em; /* Default for smaller screens */
 }
@@ -161,7 +136,7 @@ html {
 
 @media (min-width: 1400px) {
     .outlined-text {
-        letter-spacing: 0.5em; /* Large screens */
+        letter-spacing: 0.4em; /* Large screens */
     }
 }
 

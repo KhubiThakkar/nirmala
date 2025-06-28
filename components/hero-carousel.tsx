@@ -1,36 +1,32 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+// import { ChevronLeft, ChevronRight } from "lucide-react";
+// import { Button } from "@/components/ui/button";
 
 const carouselData = [
     {
         id: 1,
         text: "DESIGN",
-        bgColor:
-            "linear-gradient(135deg, #8C8073 0%, #A69588 50%, #B8A898 100%)",
+        bgImage: "/images/hero1.jpeg",
         textColor: "#FFFFFF",
     },
     {
         id: 2,
         text: "QUALITY",
-        bgColor:
-            "linear-gradient(135deg, #FFD8E8 0%, #F5C2D6 50%, #EBACC4 100%)",
-        textColor: "#8C8073",
+        bgImage: "/images/hero2.jpeg",
+        textColor: "#FFFFFF",
     },
     {
         id: 3,
         text: "STYLE",
-        bgColor:
-            "linear-gradient(135deg, #F8F6F3 0%, #E8E4DF 50%, #D8D2CB 100%)",
-        textColor: "#8C8073",
+        bgImage: "/images/hero3.jpeg",
+        textColor: "#FFFFFF",
     },
     {
         id: 4,
         text: "LUXURY",
-        bgColor:
-            "linear-gradient(135deg, #6B5D52 0%, #8C8073 50%, #A69588 100%)",
+        bgImage: "/images/hero1.jpeg",
         textColor: "#FFFFFF",
     },
 ];
@@ -87,9 +83,15 @@ export function HeroCarousel() {
                                 : "opacity-0 scale-105"
                         }`}
                         style={{
-                            background: slide.bgColor,
+                            backgroundImage: `url(${slide.bgImage})`,
+                            backgroundSize: "cover",
+                            backgroundPosition: "center",
+                            backgroundRepeat: "no-repeat",
                         }}
                     >
+                        {/* Dark overlay for better text readability */}
+                        <div className='absolute inset-0 bg-black/20'></div>
+
                         {/* Animated Text Overlay */}
                         <div className='absolute inset-0 flex items-center justify-center text-center'>
                             <h1
@@ -124,7 +126,7 @@ export function HeroCarousel() {
             </div>
 
             {/* Navigation Arrows */}
-            <Button
+            {/* <Button
                 variant='ghost'
                 size='lg'
                 className='absolute left-8 top-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all duration-300 group z-10'
@@ -142,7 +144,7 @@ export function HeroCarousel() {
                 disabled={isAnimating}
             >
                 <ChevronRight className='w-8 h-8 text-white group-hover:scale-110 transition-transform duration-300' />
-            </Button>
+            </Button> */}
 
             {/* Elegant Dots Indicator */}
             <div className='absolute bottom-12 left-1/2 -translate-x-1/2 flex space-x-4 z-10'>

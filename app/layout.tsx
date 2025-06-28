@@ -1,30 +1,11 @@
 import type React from "react";
 import "./globals.css";
 import type { Metadata } from "next";
-import {
-    Playfair_Display,
-    Inter,
-    Didact_Gothic,
-    Rubik,
-    DM_Serif_Text,
-    Comfortaa,
-} from "next/font/google";
+import { Didact_Gothic, Poppins, Tajawal } from "next/font/google";
 import { cn } from "@/lib/utils";
+import { Header } from "@/components/header";
 
 // Elegant Google-font setup  ────────────────────────────────────────────────
-const playfair = Playfair_Display({
-    subsets: ["latin"],
-    weight: ["400", "500", "600", "700"],
-    variable: "--font-playfair",
-    display: "swap",
-});
-
-const inter = Inter({
-    subsets: ["latin"],
-    weight: ["300", "400", "500", "600"],
-    variable: "--font-inter",
-    display: "swap",
-});
 
 const didactGothic = Didact_Gothic({
     subsets: ["latin"],
@@ -33,24 +14,18 @@ const didactGothic = Didact_Gothic({
     display: "swap",
 });
 
-const rubik = Rubik({
-    subsets: ["latin"],
-    weight: ["400", "500", "600", "700"],
-    variable: "--font-rubik",
-    display: "swap",
-});
-
-const dmSerifText = DM_Serif_Text({
-    subsets: ["latin"],
-    weight: ["400"],
-    variable: "--font-dm-serif-text",
-    display: "swap",
-});
-
-const comfortaa = Comfortaa({
+const poppins = Poppins({
     subsets: ["latin"],
     weight: ["300", "400", "500", "600", "700"],
-    variable: "--font-comfortaa",
+    variable: "--font-poppins",
+    display: "swap",
+});
+
+const tajawal = Tajawal({
+    subsets: ["latin"],
+    weight: ["200", "300", "400", "500", "700"],
+    style: "normal",
+    variable: "--font-tajawal",
     display: "swap",
 });
 // Site-wide metadata  ───────────────────────────────────────────────────────
@@ -71,15 +46,15 @@ export default function RootLayout({
             lang='en'
             className={cn(
                 "scroll-smooth",
-                playfair.variable, // makes Playfair available via var(--font-playfair)
-                inter.variable, // makes Inter available via var(--font-inter)
                 didactGothic.variable, // makes Didact Gothic available via var(--font-didact)
-                rubik.variable, // makes Rubik available via var(--font-rubik)
-                dmSerifText.variable, // makes DM Serif Text available via var(--font-dm-serif-text)
-                comfortaa.variable // makes Comfortaa available via var(--font-comfortaa)
+                poppins.variable, // makes Poppins available via var(--font-poppins)
+                tajawal.variable // makes Tajawal available via var(--font-tajawal)
             )}
         >
-            <body>{children}</body>
+            <body>
+                <Header />
+                {children}
+            </body>
         </html>
     );
 }

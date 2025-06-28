@@ -20,14 +20,9 @@ const config: Config = {
         },
         extend: {
             fontFamily: {
-                serif: ["Playfair Display", "Georgia", "serif"],
-                sans: ["Inter", "system-ui", "sans-serif"],
-                display: ["Playfair Display", "Georgia", "serif"],
                 didact: ["var(--font-didact)", "Arial", "sans-serif"],
-                arista: ["Arista Pro", "Arial", "sans-serif"],
-                rubik: ["var(--font-rubik)", "Arial", "sans-serif"],
-                dmSerifText: ["var(--font-dm-serif-text)", "Georgia", "serif"],
-                comfortaa: ["var(--font-comfortaa)", "Arial", "sans-serif"],
+                poppins: ["var(--font-poppins)", "Arial", "sans-serif"],
+                tajawal: ["var(--font-tajawal)", "Arial", "sans-serif"],
             },
             colors: {
                 border: "hsl(var(--border))",

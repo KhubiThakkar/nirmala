@@ -3,97 +3,14 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Download, Eye, Menu, X, Award, Shield, Sparkles } from "lucide-react";
+import { Download, Eye, Award, Shield, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { HeroCarousel } from "@/components/hero-carousel";
 
 export default function HomePage() {
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
     return (
         <div className='min-h-screen bg-cream text-warmBrown'>
-            {/* Header */}
-            <header className='fixed top-0 w-full bg-white/95 backdrop-blur-md border-b border-white/20 z-50 shadow-sm'>
-                <div className='container-custom py-4 flex items-center justify-between'>
-                    <div className='flex items-center space-x-3'>
-                        <div className='text-3xl font-didact font-normal tracking-[0.15em] text-warmBrown brand-text'>
-                            NIRMALA
-                        </div>
-                        <div className='text-sm text-warmBrown/70 font-normal'>
-                            by thirty DEGREE
-                        </div>
-                    </div>
-                    <nav className='hidden md:flex items-center space-x-8'>
-                        <Link
-                            href='#home'
-                            className='text-sm font-normal hover:text-primary transition-colors nav-text'
-                        >
-                            HOME
-                        </Link>
-                        <Link
-                            href='#collections'
-                            className='text-sm font-normal hover:text-primary transition-colors nav-text'
-                        >
-                            COLLECTIONS
-                        </Link>
-                        <Link
-                            href='#about'
-                            className='text-sm font-normal hover:text-primary transition-colors nav-text'
-                        >
-                            ABOUT
-                        </Link>
-                        <Link
-                            href='#resources'
-                            className='text-sm font-normal hover:text-primary transition-colors nav-text'
-                        >
-                            RESOURCES
-                        </Link>
-                        <Link
-                            href='#contact'
-                            className='text-sm font-normal hover:text-primary transition-colors nav-text'
-                        >
-                            CONTACT
-                        </Link>
-                    </nav>
-                    <Button
-                        variant='ghost'
-                        className='md:hidden p-2 hover:bg-softPink/20'
-                        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                    >
-                        {isMobileMenuOpen ? (
-                            <X className='h-6 w-6' />
-                        ) : (
-                            <Menu className='h-6 w-6' />
-                        )}
-                    </Button>
-                </div>
-
-                {/* Mobile Menu */}
-                {isMobileMenuOpen && (
-                    <div className='md:hidden bg-white/95 backdrop-blur-md border-t border-white/20'>
-                        <nav className='container-custom py-6 flex flex-col space-y-4'>
-                            {[
-                                "HOME",
-                                "COLLECTIONS",
-                                "ABOUT",
-                                "RESOURCES",
-                                "CONTACT",
-                            ].map((item) => (
-                                <Link
-                                    key={item}
-                                    href={`#${item.toLowerCase()}`}
-                                    className='text-sm font-normal hover:text-primary transition-colors py-2 nav-text'
-                                    onClick={() => setIsMobileMenuOpen(false)}
-                                >
-                                    {item}
-                                </Link>
-                            ))}
-                        </nav>
-                    </div>
-                )}
-            </header>
-
             {/* Hero Carousel Section */}
             <section
                 id='home'
@@ -664,7 +581,7 @@ export default function HomePage() {
                                 prestigious spaces.
                             </p>
                             <div className='text-sm text-white/60 font-normal'>
-                                by thirty DEGREE
+                                by Elements
                             </div>
                         </div>
 
@@ -789,7 +706,7 @@ export default function HomePage() {
 
                     <div className='border-t border-white/20 mt-16 pt-10 text-center text-white/60 font-normal'>
                         <p>
-                            &copy; 2024 Nirmala by thirty DEGREE. All rights
+                            &copy; 2024 Nirmala by Elements. All rights
                             reserved. Crafted with excellence.
                         </p>
                     </div>

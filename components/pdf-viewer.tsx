@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import {
     Dialog,
     DialogContent,
+    DialogDescription,
     DialogHeader,
     DialogTitle,
     DialogTrigger,
@@ -67,22 +68,23 @@ export function PDFViewer({
                             </Button>
                         </DialogTrigger>
                         <DialogContent className='max-w-4xl h-[80vh] bg-white border-warmBrown/20'>
-                            <DialogHeader>
-                                <DialogTitle className='flex items-center justify-between text-warmBrown'>
-                                    {title}
-                                    <Button
+                            {/* <DialogHeader className='items-center'> */}
+                            <DialogTitle className='flex items-center justify-between text-warmBrown grid grid-rows-1'>
+                                {title}
+                                {/* <Button
                                         variant='ghost'
                                         size='sm'
                                         onClick={() => setIsOpen(false)}
                                         className='text-warmBrown hover:bg-warmBrown/10'
                                     >
                                         <X className='h-4 w-4' />
-                                    </Button>
-                                </DialogTitle>
-                            </DialogHeader>
-                            <div className='flex-1 bg-gray-100 rounded-lg overflow-hidden border border-warmBrown/10'>
+                                    </Button> */}
+                            </DialogTitle>
+                            {/* </DialogHeader> */}
+
+                            <div className='flex-1 bg-gray-100 rounded-lg overflow-hidden border border-warmBrown/10 grid grid-rows-4'>
                                 <iframe
-                                    src={`${pdfUrl}#toolbar=1&navpanes=1&scrollbar=1`}
+                                    src={`${pdfUrl}#toolbar=1&navpanes=1&scrollbar=1&zoom=20`}
                                     className='w-full h-full'
                                     title={title}
                                 />

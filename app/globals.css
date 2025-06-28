@@ -15,6 +15,10 @@
         line-height: 1.6;
     }
 
+    body * {
+        border: 1px solid red;
+    }
+
     /* All headings use Arista Pro */
     h1,
     h2,

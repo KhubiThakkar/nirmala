@@ -17,6 +17,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { HeroCarousel } from "@/components/hero-carousel";
 import { PDFViewer } from "@/components/pdf-viewer";
+import ContactForm from "@/components/contact-form";
 
 export default function HomePage() {
     return (
@@ -336,54 +337,7 @@ export default function HomePage() {
 
                     <div className='grid lg:grid-cols-2 gap-16'>
                         <Card className='elegant-card p-10'>
-                            <form className='space-y-8'>
-                                <div>
-                                    <label className='block text-base font-normal mb-3 text-warmBrown'>
-                                        Full Name
-                                    </label>
-                                    <input
-                                        type='text'
-                                        className='w-full px-6 py-4 border border-warmBrown/20 rounded-xl focus:ring-2 focus:ring-warmBrown/30 focus:border-warmBrown transition-all duration-300 bg-white/50 backdrop-blur-sm'
-                                        placeholder='Your full name'
-                                    />
-                                </div>
-                                <div>
-                                    <label className='block text-base font-normal mb-3 text-warmBrown'>
-                                        Email Address
-                                    </label>
-                                    <input
-                                        type='email'
-                                        className='w-full px-6 py-4 border border-warmBrown/20 rounded-xl focus:ring-2 focus:ring-warmBrown/30 focus:border-warmBrown transition-all duration-300 bg-white/50 backdrop-blur-sm'
-                                        placeholder='your@email.com'
-                                    />
-                                </div>
-                                <div>
-                                    <label className='block text-base font-normal mb-3 text-warmBrown'>
-                                        Project Type
-                                    </label>
-                                    <input
-                                        type='text'
-                                        className='w-full px-6 py-4 border border-warmBrown/20 rounded-xl focus:ring-2 focus:ring-warmBrown/30 focus:border-warmBrown transition-all duration-300 bg-white/50 backdrop-blur-sm'
-                                        placeholder='Residential, Commercial, Hospitality...'
-                                    />
-                                </div>
-                                <div>
-                                    <label className='block text-base font-normal mb-3 text-warmBrown'>
-                                        Project Details
-                                    </label>
-                                    <textarea
-                                        rows={6}
-                                        className='w-full px-6 py-4 border border-warmBrown/20 rounded-xl focus:ring-2 focus:ring-warmBrown/30 focus:border-warmBrown transition-all duration-300 bg-white/50 backdrop-blur-sm'
-                                        placeholder='Tell us about your vision and requirements...'
-                                    ></textarea>
-                                </div>
-                                <Button
-                                    size='lg'
-                                    className='luxury-button w-full text-lg py-4'
-                                >
-                                    Schedule Consultation
-                                </Button>
-                            </form>
+                            <ContactForm />
                         </Card>
 
                         <div className='space-y-10'>

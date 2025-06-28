@@ -1,0 +1,201 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-cream text-warmBrown;
+    font-family: var(--font-didact), Arial, sans-serif;
+    line-height: 1.6;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-didact), Arial, sans-serif;
+    font-weight: 400;
+    line-height: 1.2;
+  }
+
+  /* All text elements use Didact Gothic */
+  p,
+  span,
+  div,
+  label,
+  input,
+  textarea,
+  button,
+  a {
+    font-family: var(--font-didact), Arial, sans-serif;
+  }
+
+  /* Hero section specific typography */
+  .hero-text {
+    font-family: var(--font-didact), Arial, sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+  }
+}
+
+@layer components {
+  .elegant-card {
+    @apply bg-white/80 backdrop-blur-sm border border-white/20 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300;
+  }
+
+  .luxury-button {
+    @apply bg-warmBrown text-white hover:bg-primary-dark transition-all duration-300 rounded-full px-8 py-3 font-medium;
+    font-family: var(--font-didact), Arial, sans-serif;
+  }
+
+  .luxury-button-outline {
+    @apply border-2 border-warmBrown text-warmBrown hover:bg-warmBrown hover:text-white transition-all duration-300 rounded-full px-8 py-3 font-medium;
+    font-family: var(--font-didact), Arial, sans-serif;
+  }
+
+  .section-padding {
+    @apply py-20 lg:py-28;
+  }
+
+  .container-custom {
+    @apply container mx-auto px-6 lg:px-8;
+  }
+
+  /* Navigation and UI elements */
+  .nav-text {
+    font-family: var(--font-didact), Arial, sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+  }
+
+  /* Brand name styling */
+  .brand-text {
+    font-family: var(--font-didact), Arial, sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f8f6f3;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #8c8073;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6b5d52;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Elegant animations */
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Luxury gradient backgrounds */
+.gradient-luxury {
+  background: linear-gradient(135deg, #f8f6f3 0%, #ffd8e8 50%, #f8f6f3 100%);
+}
+
+.gradient-warm {
+  background: linear-gradient(135deg, #8c8073 0%, #a69588 100%);
+}
+
+/* Outlined text styles */
+.outlined-text {
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke-width: 2px;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.1), 0 0 40px rgba(255, 255, 255, 0.05);
+  font-family: var(--font-didact), Arial, sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+}
+
+/* Enhanced carousel animations */
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(100px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes textAppear {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+    filter: blur(10px);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateY(15px) scale(0.95);
+    filter: blur(5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+/* Smooth transitions for carousel elements */
+.carousel-slide {
+  animation: slideInFromRight 1s ease-out;
+}
+
+.carousel-text {
+  animation: textAppear 1.2s ease-out;
+}
+
+/* Elegant button hover effects */
+.carousel-nav-button {
+  backdrop-filter: blur(20px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.carousel-nav-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}

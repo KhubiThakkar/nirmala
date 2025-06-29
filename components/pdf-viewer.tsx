@@ -69,7 +69,7 @@ export function PDFViewer({
                         </DialogTrigger>
                         <DialogContent className='max-w-4xl h-[80vh] bg-white border-warmBrown/20'>
                             {/* <DialogHeader className='items-center'> */}
-                            <DialogTitle className='items-center justify-between text-warmBrown grid grid-rows-1'>
+                            <DialogTitle className='items-center justify-between text-warmBrown grid grid-rows-1 '>
                                 {title}
                                 {/* <Button
                                         variant='ghost'
@@ -82,9 +82,9 @@ export function PDFViewer({
                             </DialogTitle>
                             {/* </DialogHeader> */}
 
-                            <div className='flex-1 bg-gray-100 rounded-lg overflow-hidden border border-warmBrown/10 grid grid-rows-4'>
+                            <div className=' bg-gray-100 rounded-lg overflow-hidden border border-warmBrown/10 grid grid-rows-3'>
                                 <iframe
-                                    src={`${pdfUrl}#toolbar=1&navpanes=1&scrollbar=1&zoom=20`}
+                                    src={`${pdfUrl}#toolbar=1&scrollbar=1&zoom=20&view=FitH`}
                                     className='w-full h-full'
                                     title={title}
                                 />

@@ -9,25 +9,25 @@ const carouselData = [
     {
         id: 1,
         text: "DESIGN",
-        bgImage: "/images/hero1.jpeg",
+        bgImage: "/images/hero-image.jpeg",
         textColor: "#FFFFFF",
     },
     {
         id: 2,
         text: "QUALITY",
-        bgImage: "/images/hero2.jpeg",
+        bgImage: "/images/hero-image1.jpeg",
         textColor: "#FFFFFF",
     },
     {
         id: 3,
         text: "STYLE",
-        bgImage: "/images/hero3.jpeg",
+        bgImage: "/images/hero-image2.jpeg",
         textColor: "#FFFFFF",
     },
     {
         id: 4,
         text: "LUXURY",
-        bgImage: "/images/hero1.jpeg",
+        bgImage: "/images/hero-image3.jpeg",
         textColor: "#FFFFFF",
     },
 ];
@@ -37,6 +37,7 @@ export function HeroCarousel() {
     const [isAnimating, setIsAnimating] = useState(false);
     const [touchStart, setTouchStart] = useState<number | null>(null);
     const [touchEnd, setTouchEnd] = useState<number | null>(null);
+    const [animationKey, setAnimationKey] = useState(0);
     const carouselRef = useRef<HTMLDivElement>(null);
 
     // Minimum swipe distance (in px)
@@ -46,6 +47,7 @@ export function HeroCarousel() {
         if (isAnimating) return;
         setIsAnimating(true);
         setCurrentSlide((prev) => (prev + 1) % carouselData.length);
+        setAnimationKey((prev) => prev + 1);
     };
 
     const prevSlide = () => {
@@ -54,12 +56,14 @@ export function HeroCarousel() {
         setCurrentSlide(
             (prev) => (prev - 1 + carouselData.length) % carouselData.length
         );
+        setAnimationKey((prev) => prev + 1);
     };
 
     const goToSlide = (index: number) => {
         if (isAnimating || index === currentSlide) return;
         setIsAnimating(true);
         setCurrentSlide(index);
+        setAnimationKey((prev) => prev + 1);
     };
 
     // Touch event handlers for swipe functionality
@@ -118,7 +122,7 @@ export function HeroCarousel() {
                         className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
                             index === currentSlide
                                 ? "opacity-100 scale-100"
-                                : "opacity-0 scale-105"
+                                : "opacity-0 scale-100 sm:scale-105"
                         }`}
                         style={{
                             backgroundImage: `url(${slide.bgImage})`,
@@ -128,16 +132,17 @@ export function HeroCarousel() {
                         }}
                     >
                         {/* Dark overlay for better text readability */}
-                        <div className='absolute inset-0 bg-black/20'></div>
+                        <div className='absolute inset-0 bg-black/30'></div>
 
                         {/* Animated Text Overlay */}
                         <div className='absolute inset-0 flex items-center justify-center text-center'>
                             <h1
+                                key={`${slide.id}-${currentSlide}-${animationKey}`}
                                 className={`text-6xl sm:text-8xl md:text-9xl lg:text-[12rem] font-bold tracking-[0.1em] transition-all duration-800 ${
                                     index === currentSlide && !isAnimating
                                         ? "opacity-100 transform translate-y-0 scale-100"
                                         : "opacity-0 transform translate-y-8 scale-95"
-                                } outlined-text text-center`}
+                                } outlined-text text-center hero-text-animated`}
                                 style={{
                                     color: "transparent",
                                     WebkitTextStroke: `2px ${slide.textColor}`,
@@ -145,7 +150,15 @@ export function HeroCarousel() {
                                     textShadow: `0 0 30px ${slide.textColor}20, 0 0 60px ${slide.textColor}10`,
                                 }}
                             >
-                                {slide.text}
+                                {slide.text
+                                    .split("")
+                                    .map((letter, letterIndex) => (
+                                        <span
+                                            key={`${letterIndex}-${animationKey}`}
+                                        >
+                                            {letter === " " ? "\u00A0" : letter}
+                                        </span>
+                                    ))}
                             </h1>
                         </div>
 

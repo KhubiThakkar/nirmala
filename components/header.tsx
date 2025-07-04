@@ -9,11 +9,13 @@ export function Header() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     const navigationItems = [
-        { href: "#home", label: "HOME" },
-        { href: "#collections", label: "COLLECTIONS" },
-        { href: "#resources", label: "RESOURCES" },
-        { href: "#about", label: "ABOUT" },
-        { href: "#contact", label: "CONTACT" },
+        { href: "/", label: "HOME" },
+        { href: "/gallery", label: "GALLERY" },
+        { href: "/brochures", label: "BROCHURES" },
+        { href: "/#collections", label: "COLLECTIONS" },
+        { href: "/#resources", label: "RESOURCES" },
+        { href: "/#about", label: "ABOUT" },
+        { href: "/#contact", label: "CONTACT" },
     ];
 
     return (

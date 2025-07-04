@@ -127,7 +127,6 @@ const galleryImages: {
 ];
 
 export default function GalleryPage() {
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [selectedImage, setSelectedImage] = useState<
         (typeof galleryImages)[0] | null
     >(null);
@@ -172,77 +171,6 @@ export default function GalleryPage() {
 
     return (
         <div className='min-h-screen bg-cream text-warmBrown'>
-            {/* Header */}
-            <header className='fixed top-0 w-full bg-white/95 backdrop-blur-md border-b border-warmBrown/20 z-50 shadow-sm'>
-                <div className='container-custom py-4 flex items-center justify-between'>
-                    <div className='flex items-center space-x-3'>
-                        <div className='text-3xl font-normal tracking-[0.15em] text-warmBrown brand-text'>
-                            NIRMALA
-                        </div>
-                        <div className='text-sm text-warmBrown/80 font-normal'>
-                            by Elements
-                        </div>
-                    </div>
-                    <nav className='hidden md:flex items-center space-x-8'>
-                        <Link
-                            href='/'
-                            className='text-sm font-normal hover:text-warmBrown/80 transition-colors nav-text'
-                        >
-                            HOME
-                        </Link>
-                        <Link
-                            href='/gallery'
-                            className='text-sm font-normal text-warmBrown border-b-2 border-warmBrown/30 pb-1 nav-text'
-                        >
-                            GALLERY
-                        </Link>
-                        <Link
-                            href='/brochures'
-                            className='text-sm font-normal hover:text-warmBrown/80 transition-colors nav-text'
-                        >
-                            BROCHURES
-                        </Link>
-                    </nav>
-                    <Button
-                        variant='ghost'
-                        className='md:hidden p-2 hover:bg-warmBrown/20'
-                        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                    >
-                        {isMobileMenuOpen ? (
-                            <X className='h-6 w-6' />
-                        ) : (
-                            <Menu className='h-6 w-6' />
-                        )}
-                    </Button>
-                </div>
-
-                {/* Mobile Menu */}
-                {isMobileMenuOpen && (
-                    <div className='md:hidden bg-white/95 backdrop-blur-md border-t border-warmBrown/20'>
-                        <nav className='container-custom py-6 flex flex-col space-y-4'>
-                            {[
-                                { name: "HOME", href: "/" },
-                                { name: "GALLERY", href: "/gallery" },
-                                { name: "BROCHURES", href: "/brochures" },
-                            ].map((item) => (
-                                <Link
-                                    key={item.name}
-                                    href={item.href}
-                                    className={`text-sm font-normal transition-colors py-2 nav-text ${
-                                        item.name === "GALLERY"
-                                            ? "text-warmBrown"
-                                            : "hover:text-warmBrown/80"
-                                    }`}
-                                    onClick={() => setIsMobileMenuOpen(false)}
-                                >
-                                    {item.name}
-                                </Link>
-                            ))}
-                        </nav>
-                    </div>
-                )}
-            </header>
-
             {/* Gallery Content */}
             <main className='pt-24 pb-20'>
                 <div className='container-custom'>

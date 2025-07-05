@@ -10,11 +10,11 @@ export function Header() {
 
     const navigationItems = [
         { href: "/", label: "HOME" },
-        { href: "/gallery", label: "GALLERY" },
-        { href: "/brochures", label: "BROCHURES" },
-        { href: "/#collections", label: "COLLECTIONS" },
-        { href: "/#resources", label: "RESOURCES" },
         { href: "/#about", label: "ABOUT" },
+        { href: "/brochures", label: "BROCHURES" },
+        { href: "/gallery", label: "GALLERY" },
+        // { href: "/#collections", label: "COLLECTIONS" },
+        // { href: "/#resources", label: "RESOURCES" },
         { href: "/#contact", label: "CONTACT" },
     ];
 

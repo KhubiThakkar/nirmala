@@ -63,7 +63,7 @@ export default function HomePage() {
                                 </div>
                                 <div className='p-8 flex flex-col flex-grow'>
                                     <h3 className='text-2xl font-bold mb-4 text-warmBrown'>
-                                        ELEGANCE THAT ENDURES
+                                        Elegance That Endures
                                     </h3>
                                     <p className='text-warmBrown/70 mb-6 flex-grow text-lg font-normal leading-relaxed'>
                                         Sophisticated kitchen solutions with
@@ -101,7 +101,7 @@ export default function HomePage() {
                                 </div>
                                 <div className='p-8 flex flex-col flex-grow'>
                                     <h3 className='text-2xl font-bold mb-4 text-warmBrown'>
-                                        LUXURY AT YOUR TOUCH
+                                        Luxury At Your Touch
                                     </h3>
                                     <p className='text-warmBrown/70 mb-6 flex-grow text-lg font-normal leading-relaxed'>
                                         Contemporary storage solutions with
@@ -138,7 +138,7 @@ export default function HomePage() {
                                 </div>
                                 <div className='p-8 flex flex-col flex-grow'>
                                     <h3 className='text-2xl font-bold mb-4 text-warmBrown'>
-                                        GRACE IN EVERY DETAIL
+                                        Grace In Every Detail
                                     </h3>
                                     <p className='text-warmBrown/70 mb-6 flex-grow text-lg font-normal leading-relaxed'>
                                         Architectural elements with geometric
@@ -224,7 +224,7 @@ export default function HomePage() {
             </section>
 
             {/* Resources Section */}
-            <section id='resources' className='section-padding gradient-luxury'>
+            {/* <section id='resources' className='section-padding gradient-luxury'>
                 <div className='container-custom'>
                     <div className='text-center mb-20'>
                         <h2 className='text-4xl sm:text-5xl md:text-6xl font-bold mb-8 text-warmBrown'>
@@ -253,10 +253,10 @@ export default function HomePage() {
                         />
                     </div>
                 </div>
-            </section>
+            </section> */}
 
             {/* About Section */}
-            <section id='about' className='section-padding bg-white'>
+            <section id='about' className='section-padding gradient-luxury'>
                 <div className='container-custom'>
                     <div className='grid lg:grid-cols-2 gap-16 items-center'>
                         <div>
@@ -323,11 +323,11 @@ export default function HomePage() {
             </section>
 
             {/* Contact Section */}
-            <section id='contact' className='section-padding gradient-luxury'>
+            <section id='contact' className='section-padding bg-white'>
                 <div className='container-custom'>
                     <div className='text-center mb-20'>
                         <h2 className='text-4xl sm:text-5xl md:text-6xl font-bold mb-8 text-warmBrown'>
-                            Start Your Project
+                            Get in Touch
                         </h2>
                         <p className='text-xl text-warmBrown/80 max-w-3xl mx-auto font-normal leading-relaxed'>
                             Let us help you bring your vision to life with our

@@ -583,3 +583,16 @@ fieldset {
 .fs-textarea::placeholder {
     color: var(--color-text-muted);
 }
+
+@keyframes scrollLeft {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.animate-scroll {
+    animation: scrollLeft 40s linear infinite;
+}

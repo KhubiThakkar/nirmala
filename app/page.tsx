@@ -18,6 +18,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { HeroCarousel } from "@/components/hero-carousel";
 import { PDFViewer } from "@/components/pdf-viewer";
 import ContactForm from "@/components/contact-form";
+import { ClientBanner } from "@/components/client-banner";
 
 export default function HomePage() {
     return (
@@ -31,10 +32,7 @@ export default function HomePage() {
             </section>
 
             {/* Featured Collections */}
-            <section
-                id='collections'
-                className='section-padding gradient-luxury'
-            >
+            <section id='collections' className='section-padding bg-white'>
                 <div className='container-custom'>
                     <div className='text-center mb-20'>
                         <h2 className='text-4xl sm:text-5xl md:text-6xl font-bold mb-8 text-warmBrown'>
@@ -164,7 +162,10 @@ export default function HomePage() {
             </section>
 
             {/* Why Choose Nirmala Section */}
-            <section className='section-padding bg-white'>
+            <section
+                className='section-padding bg-gradient-to-r from-warmBrown/5 via-softPink/10 to-warmBrown/5
+'
+            >
                 <div className='container-custom'>
                     <div className='text-center mb-20'>
                         <h2 className='text-4xl sm:text-5xl md:text-6xl font-bold mb-8 text-warmBrown'>
@@ -256,7 +257,7 @@ export default function HomePage() {
             </section> */}
 
             {/* About Section */}
-            <section id='about' className='section-padding gradient-luxury'>
+            <section id='about' className='section-padding bg-white'>
                 <div className='container-custom'>
                     <div className='grid lg:grid-cols-2 gap-16 items-center'>
                         <div>
@@ -321,6 +322,9 @@ export default function HomePage() {
                     </div>
                 </div>
             </section>
+
+            {/* Client Banner Section */}
+            <ClientBanner />
 
             {/* Contact Section */}
             <section id='contact' className='section-padding bg-white'>

@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Logo from "@/components/assets/Logo";
 
 export function Header() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -23,12 +24,7 @@ export function Header() {
             <div className='container-custom py-4 flex items-center justify-between'>
                 {/* Logo */}
                 <div className='flex items-end space-x-3'>
-                    <div className='text-3xl font-didact font-normal tracking-[0.15em] text-warmBrown brand-text'>
-                        NIRMALA
-                    </div>
-                    <div className='text-sm text-warmBrown/70 font-normal'>
-                        by Elements
-                    </div>
+                    <Logo className='h-[30px] w-auto' color='#8C8073' />
                 </div>
 
                 {/* Desktop Navigation */}

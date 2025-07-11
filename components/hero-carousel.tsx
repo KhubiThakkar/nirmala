@@ -4,10 +4,12 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 // import { ChevronLeft, ChevronRight } from "lucide-react";
 // import { Button } from "@/components/ui/button";
+import Wordmark from "@/components/assets/Wordmark";
+import WordmarkThin from "./assets/WordmarkThin";
 
 const carouselData = [
     {
-        id: 1,
+        id: "wordmark",
         text: "DESIGN",
         bgImage: "/images/hero-image.jpeg",
         textColor: "#FFFFFF",
@@ -136,30 +138,48 @@ export function HeroCarousel() {
 
                         {/* Animated Text Overlay */}
                         <div className='absolute inset-0 flex items-center justify-center text-center'>
-                            <h1
-                                key={`${slide.id}-${currentSlide}-${animationKey}`}
-                                className={`text-6xl sm:text-8xl md:text-9xl lg:text-[12rem] font-bold tracking-[0.1em] transition-all duration-800 ${
-                                    index === currentSlide && !isAnimating
-                                        ? "opacity-100 transform translate-y-0 scale-100"
-                                        : "opacity-0 transform translate-y-8 scale-95"
-                                } outlined-text text-center hero-text-animated`}
-                                style={{
-                                    color: "transparent",
-                                    WebkitTextStroke: `2px ${slide.textColor}`,
-                                    filter: "drop-shadow(0 4px 12px rgba(0,0,0,0.15))",
-                                    textShadow: `0 0 30px ${slide.textColor}20, 0 0 60px ${slide.textColor}10`,
-                                }}
-                            >
-                                {slide.text
-                                    .split("")
-                                    .map((letter, letterIndex) => (
-                                        <span
-                                            key={`${letterIndex}-${animationKey}`}
-                                        >
-                                            {letter === " " ? "\u00A0" : letter}
-                                        </span>
-                                    ))}
-                            </h1>
+                            {slide.id === "wordmark" ? (
+                                <WordmarkThin
+                                    key={`${slide.id}-${currentSlide}-${animationKey}`}
+                                    className={`w-full max-w-3xl mx-auto transition-all duration-800 ${
+                                        index === currentSlide && !isAnimating
+                                            ? "opacity-100 transform translate-y-0 scale-100"
+                                            : "opacity-0 transform translate-y-8 scale-95"
+                                    } hero-text-animated`}
+                                    color={slide.textColor}
+                                    style={{
+                                        filter: `drop-shadow(0 4px 12px rgba(0,0,0,0.15))`,
+                                        textShadow: `0 0 30px ${slide.textColor}20, 0 0 60px ${slide.textColor}10`,
+                                    }}
+                                />
+                            ) : (
+                                <h1
+                                    key={`${slide.id}-${currentSlide}-${animationKey}`}
+                                    className={`text-6xl sm:text-8xl md:text-9xl lg:text-[12rem] font-bold tracking-[0.1em] transition-all duration-800 ${
+                                        index === currentSlide && !isAnimating
+                                            ? "opacity-100 transform translate-y-0 scale-100"
+                                            : "opacity-0 transform translate-y-8 scale-95"
+                                    } outlined-text text-center hero-text-animated`}
+                                    style={{
+                                        color: "transparent",
+                                        WebkitTextStroke: `2px ${slide.textColor}`,
+                                        filter: `drop-shadow(0 4px 12px rgba(0,0,0,0.15))`,
+                                        textShadow: `0 0 30px ${slide.textColor}20, 0 0 60px ${slide.textColor}10`,
+                                    }}
+                                >
+                                    {slide.text
+                                        .split("")
+                                        .map((letter, letterIndex) => (
+                                            <span
+                                                key={`${letterIndex}-${animationKey}`}
+                                            >
+                                                {letter === " "
+                                                    ? "\u00A0"
+                                                    : letter}
+                                            </span>
+                                        ))}
+                                </h1>
+                            )}
                         </div>
 
                         {/* Subtle Pattern Overlay */}

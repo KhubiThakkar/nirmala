@@ -15,7 +15,7 @@ const brochureData = [
             "Comprehensive showcase of our complete range with detailed specifications and color variations for discerning professionals.",
         pdfUrl: "/pdf/Nirmala.pdf",
         thumbnailUrl: "/images/nirmala-brochure.png",
-        category: "Catalog",
+        category: "Laminates",
         fileSize: "12.5 MB",
         pages: 48,
     },
@@ -26,54 +26,54 @@ const brochureData = [
             "Expert maintenance protocols to preserve the exceptional quality and appearance of your Nirmala surfaces.",
         pdfUrl: "/pdf/Relwood-Brochure.pdf",
         thumbnailUrl: "/images/relwood-brochure.png",
-        category: "Care Guide",
+        category: "Sustainable Wood",
         fileSize: "3.2 MB",
         pages: 16,
     },
-    {
-        id: 3,
-        title: "Technical Documentation",
-        description:
-            "Detailed technical specifications and professional installation guidelines for optimal results and longevity.",
-        pdfUrl: "/pdf/Nirmala.pdf",
-        thumbnailUrl: "/images/nirmala-brochure.png",
-        category: "Technical",
-        fileSize: "8.7 MB",
-        pages: 32,
-    },
-    {
-        id: 4,
-        title: "Kitchen Collection Showcase",
-        description:
-            "Sophisticated kitchen solutions with meticulously curated color palettes for the modern connoisseur.",
-        pdfUrl: "/pdf/Relwood-Brochure.pdf",
-        thumbnailUrl: "/images/relwood-brochure.png",
-        category: "Collection",
-        fileSize: "15.3 MB",
-        pages: 24,
-    },
-    {
-        id: 5,
-        title: "Commercial Applications Guide",
-        description:
-            "Professional workspace solutions featuring architectural elements with geometric precision and durability.",
-        pdfUrl: "/pdf/Nirmala.pdf",
-        thumbnailUrl: "/images/nirmala-brochure.png",
-        category: "Commercial",
-        fileSize: "11.8 MB",
-        pages: 36,
-    },
-    {
-        id: 6,
-        title: "Sustainability Report",
-        description:
-            "Our commitment to environmental responsibility and sustainable luxury manufacturing practices.",
-        pdfUrl: "/pdf/Relwood-Brochure.pdf",
-        thumbnailUrl: "/images/relwood-brochure.png",
-        category: "Sustainability",
-        fileSize: "5.4 MB",
-        pages: 20,
-    },
+    // {
+    //     id: 3,
+    //     title: "Technical Documentation",
+    //     description:
+    //         "Detailed technical specifications and professional installation guidelines for optimal results and longevity.",
+    //     pdfUrl: "/pdf/Nirmala.pdf",
+    //     thumbnailUrl: "/images/nirmala-brochure.png",
+    //     category: "Technical",
+    //     fileSize: "8.7 MB",
+    //     pages: 32,
+    // },
+    // {
+    //     id: 4,
+    //     title: "Kitchen Collection Showcase",
+    //     description:
+    //         "Sophisticated kitchen solutions with meticulously curated color palettes for the modern connoisseur.",
+    //     pdfUrl: "/pdf/Relwood-Brochure.pdf",
+    //     thumbnailUrl: "/images/relwood-brochure.png",
+    //     category: "Collection",
+    //     fileSize: "15.3 MB",
+    //     pages: 24,
+    // },
+    // {
+    //     id: 5,
+    //     title: "Commercial Applications Guide",
+    //     description:
+    //         "Professional workspace solutions featuring architectural elements with geometric precision and durability.",
+    //     pdfUrl: "/pdf/Nirmala.pdf",
+    //     thumbnailUrl: "/images/nirmala-brochure.png",
+    //     category: "Commercial",
+    //     fileSize: "11.8 MB",
+    //     pages: 36,
+    // },
+    // {
+    //     id: 6,
+    //     title: "Sustainability Report",
+    //     description:
+    //         "Our commitment to environmental responsibility and sustainable luxury manufacturing practices.",
+    //     pdfUrl: "/pdf/Relwood-Brochure.pdf",
+    //     thumbnailUrl: "/images/relwood-brochure.png",
+    //     category: "Sustainability",
+    //     fileSize: "5.4 MB",
+    //     pages: 20,
+    // },
 ];
 
 export default function BrochuresPage() {

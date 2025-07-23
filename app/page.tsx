@@ -359,7 +359,7 @@ export default function HomePage() {
                                                 Email
                                             </div>
                                             <div className='text-warmBrown/70 font-normal'>
-                                                consultations@nirmala.com
+                                                info@bynirmala.in
                                             </div>
                                         </div>
                                     </div>
@@ -372,7 +372,9 @@ export default function HomePage() {
                                                 Phone
                                             </div>
                                             <div className='text-warmBrown/70 font-normal'>
-                                                +1 (555) NIRMALA
+                                                9824042743
+                                                <br />
+                                                9427037410
                                             </div>
                                         </div>
                                     </div>
@@ -385,11 +387,16 @@ export default function HomePage() {
                                                 Showroom
                                             </div>
                                             <div className='text-warmBrown/70 font-normal'>
-                                                123 Design District
+                                                Shree Shakti Saw Mill, NR GITA
+                                                MANDIR, 1/3 THE TIMBER
                                                 <br />
-                                                Luxury Avenue
+                                                MERCHANT CO OP BLDG SOCIETY,
+                                                Sahkari Lathi Bazar,
                                                 <br />
-                                                Metropolitan City, MC 12345
+                                                Jagannath Ji Road, Gita Mandir,
+                                                Ahmedabad, Ahmedabad,
+                                                <br />
+                                                Gujarat, 380022
                                             </div>
                                         </div>
                                     </div>
@@ -402,15 +409,9 @@ export default function HomePage() {
                                 </h3>
                                 <div className='space-y-4 text-warmBrown/70 font-normal'>
                                     <div className='flex justify-between items-center py-2 border-b border-warmBrown/10'>
-                                        <span>Monday - Friday</span>
+                                        <span>Monday - Saturday</span>
                                         <span className='font-normal'>
-                                            9:00 AM - 7:00 PM
-                                        </span>
-                                    </div>
-                                    <div className='flex justify-between items-center py-2 border-b border-warmBrown/10'>
-                                        <span>Saturday</span>
-                                        <span className='font-normal'>
-                                            10:00 AM - 5:00 PM
+                                            10:00 AM - 8:00 PM
                                         </span>
                                     </div>
                                     <div className='flex justify-between items-center py-2'>
@@ -499,7 +500,7 @@ export default function HomePage() {
                             </div>
                         </div>
 
-                        <div>
+                        {/* <div>
                             <h4 className='font-bold mb-6 text-lg'>
                                 Collections
                             </h4>
@@ -615,13 +616,14 @@ export default function HomePage() {
                                     </Link>
                                 </li>
                             </ul>
-                        </div>
+                        </div> */}
                     </div>
 
                     <div className='border-t border-white/20 mt-16 pt-10 text-center text-white/60 font-normal'>
                         <p>
-                            &copy; 2024 Nirmala by Elements. All rights
-                            reserved. Crafted with excellence.
+                            &copy; {new Date().getFullYear()} Nirmala by
+                            Elements. All rights reserved. Crafted with
+                            excellence.
                         </p>
                     </div>
                 </div>

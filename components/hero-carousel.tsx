@@ -4,8 +4,9 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 // import { ChevronLeft, ChevronRight } from "lucide-react";
 // import { Button } from "@/components/ui/button";
-import Wordmark from "@/components/assets/Wordmark";
+// import Wordmark from "@/components/assets/Wordmark";
 import WordmarkThin from "./assets/WordmarkThin";
+import Luxury from "./assets/Luxury";
 
 const carouselData = [
     {
@@ -27,7 +28,7 @@ const carouselData = [
         textColor: "#FFFFFF",
     },
     {
-        id: 4,
+        id: "luxury",
         text: "LUXURY",
         bgImage: "/images/hero-image3.jpeg",
         textColor: "#FFFFFF",
@@ -141,15 +142,27 @@ export function HeroCarousel() {
                             {slide.id === "wordmark" ? (
                                 <WordmarkThin
                                     key={`${slide.id}-${currentSlide}-${animationKey}`}
-                                    className={`w-full max-w-3xl mx-auto transition-all duration-800 ${
-                                        index === currentSlide && !isAnimating
-                                            ? "opacity-100 transform translate-y-0 scale-100"
-                                            : "opacity-0 transform translate-y-8 scale-95"
-                                    } hero-text-animated`}
+                                    className={`w-full max-w-3xl mx-auto ${
+                                        index === currentSlide
+                                            ? "opacity-100"
+                                            : "opacity-0"
+                                    }`}
                                     color={slide.textColor}
                                     style={{
                                         filter: `drop-shadow(0 4px 12px rgba(0,0,0,0.15))`,
-                                        textShadow: `0 0 30px ${slide.textColor}20, 0 0 60px ${slide.textColor}10`,
+                                    }}
+                                />
+                            ) : slide.id === "luxury" ? (
+                                <Luxury
+                                    key={`${slide.id}-${currentSlide}-${animationKey}`}
+                                    className={`w-full max-w-3xl mx-auto ${
+                                        index === currentSlide
+                                            ? "opacity-100"
+                                            : "opacity-0"
+                                    }`}
+                                    color={slide.textColor}
+                                    style={{
+                                        filter: `drop-shadow(0 4px 12px rgba(0,0,0,0.15))`,
                                     }}
                                 />
                             ) : (

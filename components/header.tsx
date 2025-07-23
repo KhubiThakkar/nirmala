@@ -13,7 +13,7 @@ export function Header() {
         { href: "/", label: "HOME" },
         { href: "/#about", label: "ABOUT" },
         { href: "/brochures", label: "BROCHURES" },
-        { href: "/gallery", label: "GALLERY" },
+        // { href: "/gallery", label: "GALLERY" },
         // { href: "/#collections", label: "COLLECTIONS" },
         // { href: "/#resources", label: "RESOURCES" },
         { href: "/#contact", label: "CONTACT" },

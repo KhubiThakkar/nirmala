@@ -2,57 +2,42 @@
 
 import { useEffect, useState } from "react";
 
-// Sample client logos - in a real app, these would be actual logo URLs
+// Client logos
 const clientLogos = [
     {
         id: 1,
-        name: "Luxury Hotels International",
-        logo: "/placeholder.svg?height=60&width=120&text=LHI",
+        name: "Adani",
+        logo: "/images/adani.jpeg",
     },
     {
         id: 2,
-        name: "Metropolitan Architects",
-        logo: "/placeholder.svg?height=60&width=120&text=MA",
+        name: "Babylon",
+        logo: "/images/babylon.jpeg",
     },
     {
         id: 3,
-        name: "Elite Residences",
-        logo: "/placeholder.svg?height=60&width=120&text=ER",
+        name: "Kavisha",
+        logo: "/images/kavisha.jpeg",
     },
     {
         id: 4,
-        name: "Corporate Spaces Ltd",
-        logo: "/placeholder.svg?height=60&width=120&text=CSL",
+        name: "Praveg",
+        logo: "/images/praveg.jpeg",
     },
     {
         id: 5,
-        name: "Design Studio Pro",
-        logo: "/placeholder.svg?height=60&width=120&text=DSP",
+        name: "Shridhar",
+        logo: "/images/shridhar.jpeg",
     },
     {
         id: 6,
-        name: "Premium Interiors",
-        logo: "/placeholder.svg?height=60&width=120&text=PI",
+        name: "Suryam",
+        logo: "/images/suryam.jpeg",
     },
     {
         id: 7,
-        name: "Boutique Hotels Group",
-        logo: "/placeholder.svg?height=60&width=120&text=BHG",
-    },
-    {
-        id: 8,
-        name: "Modern Living Co",
-        logo: "/placeholder.svg?height=60&width=120&text=MLC",
-    },
-    {
-        id: 9,
-        name: "Architectural Excellence",
-        logo: "/placeholder.svg?height=60&width=120&text=AE",
-    },
-    {
-        id: 10,
-        name: "Luxury Developments",
-        logo: "/placeholder.svg?height=60&width=120&text=LD",
+        name: "Taj",
+        logo: "/images/taj.jpeg",
     },
 ];
 
@@ -86,14 +71,14 @@ export function ClientBanner() {
                     {duplicatedLogos.map((client, index) => (
                         <div
                             key={`${client.id}-${index}`}
-                            className='flex-shrink-0 mx-8 flex items-center justify-center'
+                            className='flex-shrink-0 mx-4 md:mx-8 flex items-center justify-center'
                             style={{ minWidth: "160px" }}
                         >
                             <div className='bg-white/80 backdrop-blur-sm rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-white/20 group hover:scale-105'>
                                 <img
                                     src={client.logo || "/placeholder.svg"}
                                     alt={client.name}
-                                    className='h-12 w-auto object-contain opacity-70 group-hover:opacity-100 transition-opacity duration-300 filter grayscale group-hover:grayscale-0'
+                                    className='h-12 w-auto object-contain opacity-70 group-hover:opacity-100 transition-opacity duration-300 md:filter md:grayscale md:group-hover:grayscale-0'
                                 />
                             </div>
                         </div>

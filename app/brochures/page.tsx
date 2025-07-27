@@ -5,6 +5,7 @@ import Link from "next/link";
 import { X, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PDFViewer } from "@/components/pdf-viewer";
+import { Brochure } from "@/components/assets/brochure";
 
 // Sample brochure data - in a real app, this would come from an API or database
 const brochureData = [
@@ -96,9 +97,9 @@ export default function BrochuresPage() {
                 <div className='container-custom'>
                     {/* Brochures Header */}
                     <div className='text-center mb-20'>
-                        <h1 className='text-4xl sm:text-5xl md:text-6xl font-bold mb-8 text-warmBrown'>
-                            Exclusive Brochures
-                        </h1>
+                        <div className='flex justify-center mb-8'>
+                            <Brochure className='w-auto h-16 md:h-20 lg:h-24' />
+                        </div>
                         <p className='text-xl text-warmBrown/80 max-w-3xl mx-auto font-normal leading-relaxed mb-12'>
                             Access our comprehensive collection of catalogs,
                             technical documentation, and care guides crafted for

@@ -7,22 +7,25 @@ import Link from "next/link";
 // import Wordmark from "@/components/assets/Wordmark";
 import WordmarkThin from "./assets/WordmarkThin";
 import Luxury from "./assets/Luxury";
+import Design from "./assets/Design";
+import Style from "./assets/Style";
+import Quality from "./assets/Quality";
 
 const carouselData = [
     {
-        id: "wordmark",
+        id: "design",
         text: "DESIGN",
         bgImage: "/images/hero-image.jpeg",
         textColor: "#FFFFFF",
     },
     {
-        id: 2,
+        id: "quality",
         text: "QUALITY",
         bgImage: "/images/hero-image1.jpeg",
         textColor: "#FFFFFF",
     },
     {
-        id: 3,
+        id: "style",
         text: "STYLE",
         bgImage: "/images/hero-image2.jpeg",
         textColor: "#FFFFFF",
@@ -139,8 +142,34 @@ export function HeroCarousel() {
 
                         {/* Animated Text Overlay */}
                         <div className='absolute inset-0 flex items-center justify-center text-center'>
-                            {slide.id === "wordmark" ? (
-                                <WordmarkThin
+                            {slide.id === "design" ? (
+                                <Design
+                                    key={`${slide.id}-${currentSlide}-${animationKey}`}
+                                    className={`w-full max-w-3xl mx-auto ${
+                                        index === currentSlide
+                                            ? "opacity-100"
+                                            : "opacity-0"
+                                    }`}
+                                    color={slide.textColor}
+                                    style={{
+                                        filter: `drop-shadow(0 4px 12px rgba(0,0,0,0.15))`,
+                                    }}
+                                />
+                            ) : slide.id === "quality" ? (
+                                <Quality
+                                    key={`${slide.id}-${currentSlide}-${animationKey}`}
+                                    className={`w-full max-w-3xl mx-auto ${
+                                        index === currentSlide
+                                            ? "opacity-100"
+                                            : "opacity-0"
+                                    }`}
+                                    color={slide.textColor}
+                                    style={{
+                                        filter: `drop-shadow(0 4px 12px rgba(0,0,0,0.15))`,
+                                    }}
+                                />
+                            ) : slide.id === "style" ? (
+                                <Style
                                     key={`${slide.id}-${currentSlide}-${animationKey}`}
                                     className={`w-full max-w-3xl mx-auto ${
                                         index === currentSlide

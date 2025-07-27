@@ -308,7 +308,7 @@ export default function HomePage() {
                         </div>
                         <div className='aspect-square bg-gradient-to-br from-softPink/20 to-warmBrown/10 rounded-2xl overflow-hidden shadow-2xl'>
                             <Image
-                                src='/placeholder.svg?height=600&width=600'
+                                src='/images/art-of-nirmala.png'
                                 alt='About Nirmala'
                                 width={600}
                                 height={600}

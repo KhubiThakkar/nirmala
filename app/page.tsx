@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -32,7 +31,7 @@ export default function HomePage() {
             </section>
 
             {/* Featured Collections */}
-            <section id='collections' className='section-padding bg-white'>
+            {/* <section id='collections' className='section-padding bg-white'>
                 <div className='container-custom'>
                     <div className='text-center mb-20'>
                         <h2 className='text-4xl sm:text-5xl md:text-6xl font-bold mb-8 text-warmBrown'>
@@ -46,7 +45,6 @@ export default function HomePage() {
                     </div>
 
                     <div className='grid grid-cols-1 lg:grid-cols-3 gap-8'>
-                        {/* Collection 1 */}
                         <Card className='elegant-card group cursor-pointer overflow-hidden h-full'>
                             <CardContent className='p-0 flex flex-col h-full'>
                                 <div className='aspect-[4/3] bg-gradient-to-br from-softPink/20 to-warmBrown/10 mb-8 overflow-hidden relative'>
@@ -84,7 +82,6 @@ export default function HomePage() {
                             </CardContent>
                         </Card>
 
-                        {/* Collection 2 */}
                         <Card className='elegant-card group cursor-pointer overflow-hidden h-full'>
                             <CardContent className='p-0 flex flex-col h-full'>
                                 <div className='aspect-[4/3] bg-gradient-to-br from-warmBrown/10 to-softPink/20 mb-8 overflow-hidden relative'>
@@ -121,7 +118,6 @@ export default function HomePage() {
                             </CardContent>
                         </Card>
 
-                        {/* Collection 3 */}
                         <Card className='elegant-card group cursor-pointer overflow-hidden h-full'>
                             <CardContent className='p-0 flex flex-col h-full'>
                                 <div className='aspect-[4/3] bg-gradient-to-br from-softPink/30 to-warmBrown/20 mb-8 overflow-hidden relative'>
@@ -159,7 +155,7 @@ export default function HomePage() {
                         </Card>
                     </div>
                 </div>
-            </section>
+            </section> */}
 
             {/* Why Choose Nirmala Section */}
             <section

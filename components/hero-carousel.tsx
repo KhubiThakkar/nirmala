@@ -5,7 +5,6 @@ import Link from "next/link";
 // import { ChevronLeft, ChevronRight } from "lucide-react";
 // import { Button } from "@/components/ui/button";
 // import Wordmark from "@/components/assets/Wordmark";
-import WordmarkThin from "./assets/WordmarkThin";
 import Luxury from "./assets/Luxury";
 import Design from "./assets/Design";
 import Style from "./assets/Style";
@@ -145,7 +144,7 @@ export function HeroCarousel() {
                             {slide.id === "design" ? (
                                 <Design
                                     key={`${slide.id}-${currentSlide}-${animationKey}`}
-                                    className={`w-full max-w-3xl mx-auto ${
+                                    className={`w-full max-w-xs sm:max-w-lg md:max-w-2xl lg:max-w-3xl mx-auto ${
                                         index === currentSlide
                                             ? "opacity-100"
                                             : "opacity-0"
@@ -158,7 +157,7 @@ export function HeroCarousel() {
                             ) : slide.id === "quality" ? (
                                 <Quality
                                     key={`${slide.id}-${currentSlide}-${animationKey}`}
-                                    className={`w-full max-w-3xl mx-auto ${
+                                    className={`w-full max-w-xs sm:max-w-lg md:max-w-2xl lg:max-w-3xl mx-auto ${
                                         index === currentSlide
                                             ? "opacity-100"
                                             : "opacity-0"
@@ -171,7 +170,7 @@ export function HeroCarousel() {
                             ) : slide.id === "style" ? (
                                 <Style
                                     key={`${slide.id}-${currentSlide}-${animationKey}`}
-                                    className={`w-full max-w-3xl mx-auto ${
+                                    className={`w-full max-w-xs sm:max-w-lg md:max-w-2xl lg:max-w-3xl mx-auto ${
                                         index === currentSlide
                                             ? "opacity-100"
                                             : "opacity-0"
@@ -184,7 +183,7 @@ export function HeroCarousel() {
                             ) : slide.id === "luxury" ? (
                                 <Luxury
                                     key={`${slide.id}-${currentSlide}-${animationKey}`}
-                                    className={`w-full max-w-3xl mx-auto ${
+                                    className={`w-full max-w-xs sm:max-w-lg md:max-w-2xl lg:max-w-3xl mx-auto ${
                                         index === currentSlide
                                             ? "opacity-100"
                                             : "opacity-0"

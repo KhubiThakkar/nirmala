@@ -30,10 +30,9 @@ const tajawal = Tajawal({
 });
 // Site-wide metadata  ───────────────────────────────────────────────────────
 export const metadata: Metadata = {
-    title: "Nirmala – Luxury Matt-Finished Surfaces",
+    title: "Nirmala – Building Beautifully!",
     description:
-        "Premium matt-finished laminates crafted for the most discerning residential, hospitality and commercial spaces.",
-    generator: "v0.dev",
+        "Your ultimate destination for premium building decorative materials. Where all your interior design needs find their perfect home under one roof.",
 };
 
 export default function RootLayout({

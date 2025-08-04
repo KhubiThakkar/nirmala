@@ -20,12 +20,12 @@ export function WhatsAppButton({
         <div className='fixed bottom-6 right-6 z-50'>
             <Link
                 href={whatsappUrl}
-                className='text-white/80 hover:text-white transition-all duration-300 hover:scale-110 group'
+                className='text-green-500 hover:text-green-600 transition-all duration-300 hover:scale-110 group'
                 target='_blank'
                 rel='noopener noreferrer'
                 aria-label='Chat on WhatsApp'
             >
-                <div className='w-12 h-12 sm:w-14 sm:h-14 bg-green-500/90 backdrop-blur-sm rounded-full flex items-center justify-center border border-green-400/30 hover:bg-green-500 transition-all duration-300 group-hover:border-green-400/60 shadow-lg hover:shadow-xl'>
+                <div className='w-12 h-12 sm:w-14 sm:h-14 bg-warmBrown/10 backdrop-blur-sm rounded-full flex items-center justify-center border border-warmBrown/20 hover:bg-warmBrown/20 transition-all duration-300 group-hover:border-warmBrown/40 shadow-lg hover:shadow-xl'>
                     <svg
                         className='w-6 h-6 sm:w-7 sm:h-7'
                         fill='currentColor'

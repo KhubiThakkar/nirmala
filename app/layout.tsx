@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { Didact_Gothic, Poppins, Tajawal } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { Header } from "@/components/header";
+import { WhatsAppButton } from "@/components/whatsapp-button";
 
 // Elegant Google-font setup  ────────────────────────────────────────────────
 
@@ -53,6 +54,10 @@ export default function RootLayout({
             <body>
                 <Header />
                 {children}
+                <WhatsAppButton
+                    phoneNumber='+1234567890'
+                    message="Hello! I'm interested in your building materials and services."
+                />
             </body>
         </html>
     );

@@ -1,42 +1,55 @@
+"use client";
+
 import { useForm, ValidationError } from "@formspree/react";
-import { Button } from "@/components/ui/button";
 
 export default function ContactForm() {
     const [state, handleSubmit] = useForm("xldnazep");
 
     if (state.succeeded) {
-        return <p>Thanks for your submission!</p>;
+        return (
+            <p className='text-ink-secondary text-center py-8'>
+                Thanks for your submission!
+            </p>
+        );
     }
 
     return (
-        <form className='space-y-8' onSubmit={handleSubmit}>
-            <div>
-                <label
-                    htmlFor='name'
-                    className='block text-base font-normal mb-3 text-warmBrown'
-                >
-                    Full Name
-                </label>
-                <input
-                    id='name'
-                    name='name'
-                    type='text'
-                    className='w-full px-4 sm:px-6 py-4 border border-warmBrown/20 rounded-xl focus:ring-2 focus:ring-warmBrown/30 focus:border-warmBrown transition-all duration-300 bg-white/50 backdrop-blur-sm'
-                    placeholder='Your full name'
-                />
+        <form className='space-y-5' onSubmit={handleSubmit}>
+            <div className='field-row'>
+                <div>
+                    <label htmlFor='firstName' className='field-label'>
+                        First Name
+                    </label>
+                    <input
+                        id='firstName'
+                        name='firstName'
+                        type='text'
+                        className='field-input'
+                        placeholder='First name'
+                    />
+                </div>
+                <div>
+                    <label htmlFor='lastName' className='field-label'>
+                        Last Name
+                    </label>
+                    <input
+                        id='lastName'
+                        name='lastName'
+                        type='text'
+                        className='field-input'
+                        placeholder='Last name'
+                    />
+                </div>
             </div>
             <div>
-                <label
-                    htmlFor='email'
-                    className='block text-base font-normal mb-3 text-warmBrown'
-                >
+                <label htmlFor='email' className='field-label'>
                     Email Address
                 </label>
                 <input
                     id='email'
                     name='email'
                     type='email'
-                    className='w-full px-4 sm:px-6 py-4 border border-warmBrown/20 rounded-xl focus:ring-2 focus:ring-warmBrown/30 focus:border-warmBrown transition-all duration-300 bg-white/50 backdrop-blur-sm'
+                    className='field-input'
                     placeholder='your@email.com'
                 />
                 <ValidationError
@@ -46,18 +59,15 @@ export default function ContactForm() {
                 />
             </div>
             <div>
-                <label
-                    htmlFor='message'
-                    className='block text-base font-normal mb-3 text-warmBrown'
-                >
+                <label htmlFor='message' className='field-label'>
                     Project Details
                 </label>
                 <textarea
                     id='message'
                     name='message'
-                    rows={6}
+                    rows={5}
                     style={{ resize: "none" }}
-                    className='w-full px-4 sm:px-6 py-4 border border-warmBrown/20 rounded-xl focus:ring-2 focus:ring-warmBrown/30 focus:border-warmBrown transition-all duration-300 bg-white/50 backdrop-blur-sm'
+                    className='field-input'
                     placeholder='Tell us about your vision and requirements...'
                 ></textarea>
                 <ValidationError
@@ -66,16 +76,14 @@ export default function ContactForm() {
                     errors={state.errors}
                 />
             </div>
-            <div className='text-sm text-warmBrown/70 font-normal flex flex-col gap-2'>
-                <Button
-                    size='lg'
-                    className='luxury-button w-full text-lg py-4'
-                    type='submit'
-                >
+            <div className='flex flex-col gap-3 pt-1'>
+                <button type='submit' className='btn btn-primary w-full'>
                     Schedule Consultation
-                </Button>
+                </button>
                 <ValidationError errors={state.errors} />
-                We usually respond within 1-2 business days.
+                <p className='text-xs text-ink-muted'>
+                    We usually respond within 1-2 business days.
+                </p>
             </div>
         </form>
     );

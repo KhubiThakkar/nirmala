@@ -1,22 +1,20 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
+import Image from "next/image";
 import {
     Dialog,
     DialogContent,
-    DialogDescription,
-    DialogHeader,
     DialogTitle,
-    DialogTrigger,
 } from "@/components/ui/dialog";
-import { Download, Eye, X } from "lucide-react";
+import { Download, Eye } from "lucide-react";
 
 interface PDFViewerProps {
     title: string;
     pdfUrl: string;
     thumbnailUrl: string;
     description: string;
+    category?: string;
 }
 
 export function PDFViewer({
@@ -24,67 +22,79 @@ export function PDFViewer({
     pdfUrl,
     thumbnailUrl,
     description,
+    category,
 }: PDFViewerProps) {
     const [isOpen, setIsOpen] = useState(false);
 
-    const handleDownload = () => {
-        // Create a temporary link element and trigger download
-        const link = document.createElement("a");
-        link.href = pdfUrl;
-        link.download = `${title}.pdf`;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+    const handleDownload = async () => {
+        try {
+            const response = await fetch(pdfUrl);
+            const blob = await response.blob();
+            const blobUrl = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.href = blobUrl;
+            link.download = `${title}.pdf`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(blobUrl);
+        } catch {
+            // Fallback for browsers that block the fetch (e.g. offline/CORS) —
+            // opening in a new tab still lets the user save it manually.
+            window.open(pdfUrl, "_blank", "noopener,noreferrer");
+        }
     };
 
     return (
-        <div className='elegant-card hover:shadow-2xl transition-all duration-500 border border-warmBrown/20 rounded-xl overflow-hidden bg-white flex flex-col'>
-            {/* Image Section */}
-            <div className='aspect-[3/4] bg-gradient-to-br from-softPink/20 to-warmBrown/10 relative overflow-hidden flex-shrink-0'>
-                <img
+        <div className='card-surface flex flex-col h-full'>
+            <div className='relative aspect-[3/4] overflow-hidden'>
+                <Image
                     src={thumbnailUrl || "/placeholder.svg"}
                     alt={title}
-                    className='w-full h-full object-cover'
+                    fill
+                    sizes='(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw'
+                    className='object-cover'
                 />
-                <div className='absolute inset-0 bg-gradient-to-t from-warmBrown/20 to-transparent'></div>
+                <div
+                    className='absolute inset-0'
+                    style={{
+                        background:
+                            "linear-gradient(to top, rgba(0,0,0,.45), transparent 55%)",
+                    }}
+                />
+                {category && (
+                    <span className='absolute top-3 left-3 rounded-pill bg-surface-raised px-2.5 py-1 text-[10px] font-medium uppercase tracking-wide text-ink'>
+                        {category}
+                    </span>
+                )}
             </div>
 
-            {/* Content Section */}
-            <div className='p-6 flex flex-col flex-1 min-h-0'>
-                <h3 className='text-xl font-bold mb-3 text-warmBrown'>
+            <div className='p-5 flex flex-col flex-1'>
+                <h3 className='text-[15px] font-semibold uppercase tracking-wide text-ink mb-1'>
                     {title}
                 </h3>
-                <p className='text-warmBrown/70 mb-4 text-sm font-normal leading-relaxed flex-1'>
+                <p className='text-xs text-ink-muted mb-3'>by Tsuco</p>
+                <p className='text-sm text-ink-secondary leading-relaxed mb-5 flex-1 line-clamp-3'>
                     {description}
                 </p>
 
-                {/* Buttons Section */}
-                <div className='flex gap-3 pt-2'>
+                <div className='flex flex-col gap-2'>
                     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-                        <DialogTrigger asChild>
-                            <Button className='flex-1 bg-warmBrown text-white hover:bg-warmBrown/80 transition-all duration-300 rounded-lg px-3 py-2 font-medium text-sm'>
-                                <Eye className='mr-2 h-4 w-4' />
-                                Preview
-                            </Button>
-                        </DialogTrigger>
-                        <DialogContent className='max-w-4xl h-[80vh] bg-white border-warmBrown/20'>
-                            {/* <DialogHeader className='items-center'> */}
-                            <DialogTitle className='items-center justify-between text-warmBrown grid grid-rows-1 '>
+                        <button
+                            type='button'
+                            onClick={() => setIsOpen(true)}
+                            className='btn btn-secondary w-full'
+                        >
+                            <Eye className='h-4 w-4' />
+                            Preview
+                        </button>
+                        <DialogContent className='max-w-4xl h-[80vh] flex flex-col rounded-lg bg-surface-raised border-[color:var(--border-header)]'>
+                            <DialogTitle className='text-ink flex-shrink-0'>
                                 {title}
-                                {/* <Button
-                                        variant='ghost'
-                                        size='sm'
-                                        onClick={() => setIsOpen(false)}
-                                        className='text-warmBrown hover:bg-warmBrown/10'
-                                    >
-                                        <X className='h-4 w-4' />
-                                    </Button> */}
                             </DialogTitle>
-                            {/* </DialogHeader> */}
-
-                            <div className=' bg-gray-100 rounded-lg overflow-hidden border border-warmBrown/10 grid grid-rows-3'>
+                            <div className='flex-1 min-h-0 bg-surface-elevated rounded-md overflow-hidden border border-[color:var(--border-header)]'>
                                 <iframe
-                                    src={`${pdfUrl}#toolbar=1&scrollbar=1&zoom=20&view=FitH`}
+                                    src={`${pdfUrl}#toolbar=1&view=FitH`}
                                     className='w-full h-full'
                                     title={title}
                                 />
@@ -92,14 +102,14 @@ export function PDFViewer({
                         </DialogContent>
                     </Dialog>
 
-                    <Button
-                        variant='outline'
-                        className='flex-1 border-2 border-warmBrown text-warmBrown hover:bg-warmBrown hover:text-white transition-all duration-300 rounded-lg px-3 py-2 font-medium text-sm'
+                    <button
+                        type='button'
                         onClick={handleDownload}
+                        className='btn btn-secondary w-full'
                     >
-                        <Download className='mr-2 h-4 w-4' />
+                        <Download className='h-4 w-4' />
                         Download
-                    </Button>
+                    </button>
                 </div>
             </div>
         </div>

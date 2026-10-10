@@ -1,353 +1,320 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
-// import { ChevronLeft, ChevronRight } from "lucide-react";
-// import { Button } from "@/components/ui/button";
-// import Wordmark from "@/components/assets/Wordmark";
-import Luxury from "./assets/Luxury";
-import Design from "./assets/Design";
-import Style from "./assets/Style";
-import Quality from "./assets/Quality";
+import { ChevronLeft, ChevronRight, ArrowUpRight } from "lucide-react";
 
-const carouselData = [
+const slides = [
     {
         id: "design",
-        text: "DESIGN",
+        pillar: "DESIGN",
         bgImage: "/images/hero-image.jpeg",
-        textColor: "#FFFFFF",
+        headline: ["Design That", "Defines Spaces"],
+        body: "We are pioneers in the luxury laminate and décor industry, creating exceptional finishes that define the most prestigious interior spaces around the world.",
+        specs: [
+            { label: "Showroom", value: "Ahmedabad, Gujarat" },
+            { label: "Established", value: "20+ Years" },
+        ],
     },
     {
         id: "quality",
-        text: "QUALITY",
+        pillar: "QUALITY",
         bgImage: "/images/hero-image1.jpeg",
-        textColor: "#FFFFFF",
+        headline: ["Exceptional", "Durability"],
+        body: "Engineered to withstand daily wear while preserving the sophisticated aesthetic of luxury spaces.",
+        specs: [
+            { label: "Finish", value: "Super Matt" },
+            { label: "Resistance", value: "Scratch & Fingerprint" },
+        ],
     },
     {
         id: "style",
-        text: "STYLE",
+        pillar: "STYLE",
         bgImage: "/images/hero-image2.jpeg",
-        textColor: "#FFFFFF",
+        headline: ["Effortless", "Elegance"],
+        body: "Seamless integration with any design aesthetic, from contemporary minimalism to classic sophistication.",
+        specs: [
+            { label: "Palette", value: "Warm & Neutral" },
+            { label: "Application", value: "Residential & Commercial" },
+        ],
     },
     {
         id: "luxury",
-        text: "LUXURY",
+        pillar: "LUXURY",
         bgImage: "/images/hero-image3.jpeg",
-        textColor: "#FFFFFF",
+        headline: ["Super Matt", "Finish"],
+        body: "Ultra-smooth, fingerprint-resistant surfaces that maintain their pristine appearance for years.",
+        specs: [
+            { label: "Showroom", value: "Ahmedabad, Gujarat" },
+            { label: "Established", value: "20+ Years" },
+        ],
     },
 ];
 
+// swatchTones was used by the Sample Finishes block, commented out below.
+// const swatchTones = [
+//     "var(--text-primary)",
+//     "var(--surface-sand)",
+//     "var(--accent)",
+//     "var(--border-header)",
+// ];
+
+const AUTOPLAY_MS = 6000;
+
 export function HeroCarousel() {
-    const [currentSlide, setCurrentSlide] = useState(0);
-    const [isAnimating, setIsAnimating] = useState(false);
-    const [touchStart, setTouchStart] = useState<number | null>(null);
-    const [touchEnd, setTouchEnd] = useState<number | null>(null);
-    const [animationKey, setAnimationKey] = useState(0);
-    const carouselRef = useRef<HTMLDivElement>(null);
+    const [current, setCurrent] = useState(0);
+    const [isPaused, setIsPaused] = useState(false);
+    const touchStart = useRef<number | null>(null);
+    const total = slides.length;
+    const slide = slides[current];
 
-    // Minimum swipe distance (in px)
-    const minSwipeDistance = 50;
+    const goTo = useCallback(
+        (index: number) => setCurrent((index + total) % total),
+        [total]
+    );
+    const next = useCallback(() => goTo(current + 1), [current, goTo]);
+    const prev = useCallback(() => goTo(current - 1), [current, goTo]);
 
-    const nextSlide = () => {
-        if (isAnimating) return;
-        setIsAnimating(true);
-        setCurrentSlide((prev) => (prev + 1) % carouselData.length);
-        setAnimationKey((prev) => prev + 1);
-    };
+    useEffect(() => {
+        if (isPaused) return;
+        const id = setInterval(next, AUTOPLAY_MS);
+        return () => clearInterval(id);
+    }, [next, isPaused]);
 
-    const prevSlide = () => {
-        if (isAnimating) return;
-        setIsAnimating(true);
-        setCurrentSlide(
-            (prev) => (prev - 1 + carouselData.length) % carouselData.length
-        );
-        setAnimationKey((prev) => prev + 1);
-    };
-
-    const goToSlide = (index: number) => {
-        if (isAnimating || index === currentSlide) return;
-        setIsAnimating(true);
-        setCurrentSlide(index);
-        setAnimationKey((prev) => prev + 1);
-    };
-
-    // Touch event handlers for swipe functionality
     const onTouchStart = (e: React.TouchEvent) => {
-        setTouchEnd(null);
-        setTouchStart(e.targetTouches[0].clientX);
+        touchStart.current = e.targetTouches[0].clientX;
     };
-
-    const onTouchMove = (e: React.TouchEvent) => {
-        setTouchEnd(e.targetTouches[0].clientX);
+    const onTouchEnd = (e: React.TouchEvent) => {
+        if (touchStart.current === null) return;
+        const distance = touchStart.current - e.changedTouches[0].clientX;
+        if (distance > 50) next();
+        else if (distance < -50) prev();
+        touchStart.current = null;
     };
-
-    const onTouchEnd = () => {
-        if (!touchStart || !touchEnd) return;
-
-        const distance = touchStart - touchEnd;
-        const isLeftSwipe = distance > minSwipeDistance;
-        const isRightSwipe = distance < -minSwipeDistance;
-
-        if (isLeftSwipe) {
-            nextSlide();
-        }
-        if (isRightSwipe) {
-            prevSlide();
-        }
-    };
-
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setIsAnimating(false);
-        }, 800);
-        return () => clearTimeout(timer);
-    }, [currentSlide]);
-
-    // Auto-advance carousel
-    useEffect(() => {
-        const interval = setInterval(() => {
-            nextSlide();
-        }, 5000);
-        return () => clearInterval(interval);
-    }, []);
 
     return (
-        <div
-            ref={carouselRef}
-            className='relative w-full h-screen overflow-hidden touch-pan-y'
-            onTouchStart={onTouchStart}
-            onTouchMove={onTouchMove}
-            onTouchEnd={onTouchEnd}
+        <section
+            id='home'
+            className='pt-24 lg:pt-36 pb-10 lg:pb-16'
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
         >
-            {/* Carousel Images */}
-            <div className='relative w-full h-full'>
-                {carouselData.map((slide, index) => (
-                    <div
-                        key={slide.id}
-                        className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
-                            index === currentSlide
-                                ? "opacity-100 scale-100"
-                                : "opacity-0 scale-100 sm:scale-105"
-                        }`}
-                        style={{
-                            backgroundImage: `url(${slide.bgImage})`,
-                            backgroundSize: "cover",
-                            backgroundPosition: "center",
-                            backgroundRepeat: "no-repeat",
-                        }}
-                    >
-                        {/* Dark overlay for better text readability */}
-                        <div className='absolute inset-0 bg-black/30'></div>
-
-                        {/* Animated Text Overlay */}
-                        <div className='absolute inset-0 flex items-center justify-center text-center'>
-                            {slide.id === "design" ? (
-                                <Design
-                                    key={`${slide.id}-${currentSlide}-${animationKey}`}
-                                    className={`w-full max-w-xs sm:max-w-lg md:max-w-2xl lg:max-w-3xl mx-auto ${
-                                        index === currentSlide
+            <div className='container-shell'>
+                <div className='rounded-xl border border-[color:var(--border-header)] bg-surface p-3 lg:p-4'>
+                    <div className='grid lg:grid-cols-[52%_48%] gap-3 lg:gap-4'>
+                        {/* Image column */}
+                        <div
+                            className='relative aspect-[4/5] sm:aspect-[16/10] lg:aspect-auto lg:h-[640px] rounded-lg overflow-hidden'
+                            onTouchStart={onTouchStart}
+                            onTouchEnd={onTouchEnd}
+                        >
+                            {slides.map((s, index) => (
+                                <div
+                                    key={s.id}
+                                    className={`absolute inset-0 transition-opacity duration-700 [transition-timing-function:cubic-bezier(0.22,0.61,0.36,1)] ${
+                                        index === current
                                             ? "opacity-100"
                                             : "opacity-0"
                                     }`}
-                                    color={slide.textColor}
-                                    style={{
-                                        filter: `drop-shadow(0 4px 12px rgba(0,0,0,0.15))`,
-                                    }}
-                                />
-                            ) : slide.id === "quality" ? (
-                                <Quality
-                                    key={`${slide.id}-${currentSlide}-${animationKey}`}
-                                    className={`w-full max-w-xs sm:max-w-lg md:max-w-2xl lg:max-w-3xl mx-auto ${
-                                        index === currentSlide
-                                            ? "opacity-100"
-                                            : "opacity-0"
-                                    }`}
-                                    color={slide.textColor}
-                                    style={{
-                                        filter: `drop-shadow(0 4px 12px rgba(0,0,0,0.15))`,
-                                    }}
-                                />
-                            ) : slide.id === "style" ? (
-                                <Style
-                                    key={`${slide.id}-${currentSlide}-${animationKey}`}
-                                    className={`w-full max-w-xs sm:max-w-lg md:max-w-2xl lg:max-w-3xl mx-auto ${
-                                        index === currentSlide
-                                            ? "opacity-100"
-                                            : "opacity-0"
-                                    }`}
-                                    color={slide.textColor}
-                                    style={{
-                                        filter: `drop-shadow(0 4px 12px rgba(0,0,0,0.15))`,
-                                    }}
-                                />
-                            ) : slide.id === "luxury" ? (
-                                <Luxury
-                                    key={`${slide.id}-${currentSlide}-${animationKey}`}
-                                    className={`w-full max-w-xs sm:max-w-lg md:max-w-2xl lg:max-w-3xl mx-auto ${
-                                        index === currentSlide
-                                            ? "opacity-100"
-                                            : "opacity-0"
-                                    }`}
-                                    color={slide.textColor}
-                                    style={{
-                                        filter: `drop-shadow(0 4px 12px rgba(0,0,0,0.15))`,
-                                    }}
-                                />
-                            ) : (
-                                <h1
-                                    key={`${slide.id}-${currentSlide}-${animationKey}`}
-                                    className={`text-6xl sm:text-8xl md:text-9xl lg:text-[12rem] font-bold tracking-[0.1em] transition-all duration-800 ${
-                                        index === currentSlide && !isAnimating
-                                            ? "opacity-100 transform translate-y-0 scale-100"
-                                            : "opacity-0 transform translate-y-8 scale-95"
-                                    } outlined-text text-center hero-text-animated`}
-                                    style={{
-                                        color: "transparent",
-                                        WebkitTextStroke: `2px ${slide.textColor}`,
-                                        filter: `drop-shadow(0 4px 12px rgba(0,0,0,0.15))`,
-                                        textShadow: `0 0 30px ${slide.textColor}20, 0 0 60px ${slide.textColor}10`,
-                                    }}
+                                    aria-hidden={index !== current}
                                 >
-                                    {slide.text
-                                        .split("")
-                                        .map((letter, letterIndex) => (
-                                            <span
-                                                key={`${letterIndex}-${animationKey}`}
-                                            >
-                                                {letter === " "
-                                                    ? "\u00A0"
-                                                    : letter}
-                                            </span>
-                                        ))}
-                                </h1>
-                            )}
+                                    <Image
+                                        src={s.bgImage}
+                                        alt={`${s.pillar} — Tsuco surfaces`}
+                                        fill
+                                        priority={index === 0}
+                                        sizes='(max-width: 1024px) 100vw, 52vw'
+                                        className='object-cover'
+                                    />
+                                    <div
+                                        className='absolute inset-0'
+                                        style={{
+                                            background:
+                                                "linear-gradient(to top, rgba(0,0,0,.75), transparent 60%)",
+                                        }}
+                                    />
+                                </div>
+                            ))}
+
+                            {/* Counter pill */}
+                            <div className='absolute top-4 right-4 rounded-pill bg-black/50 backdrop-blur-sm px-3 py-1 text-[11px] tracking-wider text-on-dark'>
+                                {String(current + 1).padStart(2, "0")} /{" "}
+                                {String(total).padStart(2, "0")}
+                            </div>
+
+                            {/* Collection label */}
+                            <div className='absolute bottom-16 left-6 right-6'>
+                                <div className='nav-text text-on-dark-muted mb-2'>
+                                    PILLAR
+                                </div>
+                                <div
+                                    className='font-serif-italic text-on-dark'
+                                    style={{ fontSize: "clamp(28px, 4vw, 40px)" }}
+                                >
+                                    {slide.pillar}
+                                </div>
+                            </div>
+
+                            {/* Prev/Next */}
+                            <div className='absolute bottom-6 right-6 flex gap-2'>
+                                <button
+                                    type='button'
+                                    aria-label='Previous slide'
+                                    onClick={prev}
+                                    className='h-10 w-10 rounded-md bg-black/40 hover:bg-black/60 backdrop-blur-sm flex items-center justify-center text-on-dark transition-colors'
+                                >
+                                    <ChevronLeft className='h-5 w-5' />
+                                </button>
+                                <button
+                                    type='button'
+                                    aria-label='Next slide'
+                                    onClick={next}
+                                    className='h-10 w-10 rounded-md bg-black/40 hover:bg-black/60 backdrop-blur-sm flex items-center justify-center text-on-dark transition-colors'
+                                >
+                                    <ChevronRight className='h-5 w-5' />
+                                </button>
+                            </div>
+
+                            {/* Progress segments */}
+                            <div className='absolute bottom-6 left-6 right-28 flex gap-2'>
+                                {slides.map((s, index) => (
+                                    <button
+                                        key={s.id}
+                                        aria-label={`Go to ${s.pillar} slide`}
+                                        onClick={() => goTo(index)}
+                                        className='h-1 flex-1 rounded-full bg-white/25 overflow-hidden'
+                                    >
+                                        <span
+                                            className='block h-full bg-white transition-all duration-500'
+                                            style={{
+                                                width:
+                                                    index === current
+                                                        ? "100%"
+                                                        : index < current
+                                                        ? "100%"
+                                                        : "0%",
+                                            }}
+                                        />
+                                    </button>
+                                ))}
+                            </div>
                         </div>
 
-                        {/* Subtle Pattern Overlay */}
-                        <div className='absolute inset-0 opacity-10'>
+                        {/* Info panel */}
+                        <div className='flex flex-col justify-center px-2 py-6 lg:px-8 lg:py-8'>
+                            <div className='flex items-center gap-3 mb-4'>
+                                <span className='h-px w-6 bg-teal' aria-hidden='true' />
+                                <span className='eyebrow'>Tsuco — The Surface Company</span>
+                            </div>
+
+                            <h1 className='hero-headline text-ink mb-5'>
+                                {slide.headline[0]}
+                                <br />
+                                {slide.headline[1]}
+                            </h1>
+
+                            <p className='text-ink-secondary text-base leading-relaxed mb-6 line-clamp-3 max-w-[48ch]'>
+                                {slide.body}
+                            </p>
+
+                            {/*
+                             * Showroom / Established / Sample Finishes block — commented out
+                             * for now, it doesn't line up with the current slide imagery.
+                             * Revisit once we have content that matches. Uncomment to restore:
+                             *
+                             * <div className='h-px bg-[color:var(--border-header)] mb-6' />
+                             *
+                             * <div className='space-y-3 mb-6'>
+                             *     {slide.specs.map((row) => (
+                             *         <div
+                             *             key={row.label}
+                             *             className='flex items-center justify-between text-sm'
+                             *         >
+                             *             <span className='nav-text text-ink-muted'>
+                             *                 {row.label}
+                             *             </span>
+                             *             <span className='font-semibold text-ink'>
+                             *                 {row.value}
+                             *             </span>
+                             *         </div>
+                             *     ))}
+                             * </div>
+                             *
+                             * <div className='flex items-center justify-between mb-3'>
+                             *     <span className='nav-text text-ink-muted'>
+                             *         Sample Finishes
+                             *     </span>
+                             *     <Link href='/brochures' className='link-arrow'>
+                             *         View All
+                             *     </Link>
+                             * </div>
+                             * <div className='flex gap-2.5 mb-8'>
+                             *     {swatchTones.map((tone, i) => (
+                             *         <span
+                             *             key={i}
+                             *             className='h-10 w-10 rounded-md border border-[color:var(--border-header)]'
+                             *             style={{ background: tone }}
+                             *         />
+                             *     ))}
+                             * </div>
+                             */}
+
+                            <div className='flex flex-col gap-3'>
+                                <Link
+                                    href='/#contact'
+                                    className='btn btn-primary w-full'
+                                >
+                                    Enquire Now
+                                    <ArrowUpRight className='h-4 w-4' />
+                                </Link>
+                                <Link
+                                    href='/brochures'
+                                    className='btn btn-secondary w-full'
+                                >
+                                    View Brochures
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Mobile/tablet thumbnail strip */}
+                <div className='lg:hidden flex gap-3 overflow-x-auto scrollbar-hide mt-4 pb-1'
+                    style={{ scrollSnapType: "x mandatory" }}
+                >
+                    {slides.map((s, index) => (
+                        <button
+                            key={s.id}
+                            onClick={() => goTo(index)}
+                            style={{ scrollSnapAlign: "start" }}
+                            className={`relative flex-shrink-0 w-[62px] h-[90px] rounded-md overflow-hidden border-2 transition-colors ${
+                                index === current
+                                    ? "border-teal"
+                                    : "border-transparent"
+                            }`}
+                        >
+                            <Image
+                                src={s.bgImage}
+                                alt=''
+                                fill
+                                sizes='62px'
+                                className='object-cover'
+                            />
                             <div
-                                className='w-full h-full'
+                                className='absolute inset-0'
                                 style={{
-                                    backgroundImage: `radial-gradient(circle at 25% 25%, ${slide.textColor}20 0%, transparent 50%), 
-                                   radial-gradient(circle at 75% 75%, ${slide.textColor}15 0%, transparent 50%)`,
+                                    background:
+                                        "linear-gradient(to top, rgba(0,0,0,.6), transparent 55%)",
                                 }}
                             />
-                        </div>
-                    </div>
-                ))}
+                            <span className='absolute bottom-1 left-1 right-1 text-[8px] tracking-wider text-on-dark uppercase'>
+                                {s.pillar}
+                            </span>
+                        </button>
+                    ))}
+                </div>
             </div>
-
-            {/* Navigation Arrows */}
-            {/* <Button
-                variant='ghost'
-                size='lg'
-                className='absolute left-8 top-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all duration-300 group z-10'
-                onClick={prevSlide}
-                disabled={isAnimating}
-            >
-                <ChevronLeft className='w-8 h-8 text-white group-hover:scale-110 transition-transform duration-300' />
-            </Button>
-
-            <Button
-                variant='ghost'
-                size='lg'
-                className='absolute right-8 top-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all duration-300 group z-10'
-                onClick={nextSlide}
-                disabled={isAnimating}
-            >
-                <ChevronRight className='w-8 h-8 text-white group-hover:scale-110 transition-transform duration-300' />
-            </Button> */}
-
-            {/* Elegant Dots Indicator */}
-            <div className='absolute bottom-12 left-1/2 -translate-x-1/2 flex space-x-4 z-10'>
-                {carouselData.map((_, index) => (
-                    <button
-                        key={index}
-                        className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                            index === currentSlide
-                                ? "bg-white scale-125 shadow-lg"
-                                : "bg-white/40 hover:bg-white/60"
-                        }`}
-                        onClick={() => goToSlide(index)}
-                    />
-                ))}
-            </div>
-
-            {/* Social Media Icons - Top Right */}
-            <div className='absolute top-8 right-8 flex space-x-3 sm:space-x-4 z-10'>
-                <Link
-                    href='https://instagram.com'
-                    className='text-white/80 hover:text-white transition-all duration-300 hover:scale-110 group'
-                    target='_blank'
-                    rel='noopener noreferrer'
-                >
-                    <div className='w-8 h-8 sm:w-10 sm:h-10 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/20 hover:bg-white/20 transition-all duration-300 group-hover:border-white/40'>
-                        <svg
-                            className='w-4 h-4 sm:w-5 sm:h-5'
-                            fill='currentColor'
-                            viewBox='0 0 24 24'
-                            aria-hidden='true'
-                        >
-                            <path
-                                fillRule='evenodd'
-                                d='M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z'
-                                clipRule='evenodd'
-                            />
-                        </svg>
-                    </div>
-                </Link>
-                <Link
-                    href='https://linkedin.com'
-                    className='text-white/80 hover:text-white transition-all duration-300 hover:scale-110 group'
-                    target='_blank'
-                    rel='noopener noreferrer'
-                >
-                    <div className='w-8 h-8 sm:w-10 sm:h-10 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/20 hover:bg-white/20 transition-all duration-300 group-hover:border-white/40'>
-                        <svg
-                            className='w-4 h-4 sm:w-5 sm:h-5'
-                            fill='currentColor'
-                            viewBox='0 0 24 24'
-                            aria-hidden='true'
-                        >
-                            <path
-                                fillRule='evenodd'
-                                d='M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z'
-                                clipRule='evenodd'
-                            />
-                        </svg>
-                    </div>
-                </Link>
-                <Link
-                    href='https://facebook.com'
-                    className='text-white/80 hover:text-white transition-all duration-300 hover:scale-110 group'
-                    target='_blank'
-                    rel='noopener noreferrer'
-                >
-                    <div className='w-8 h-8 sm:w-10 sm:h-10 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/20 hover:bg-white/20 transition-all duration-300 group-hover:border-white/40'>
-                        <svg
-                            className='w-4 h-4 sm:w-5 sm:h-5'
-                            fill='currentColor'
-                            viewBox='0 0 24 24'
-                            aria-hidden='true'
-                        >
-                            <path
-                                fillRule='evenodd'
-                                d='M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z'
-                                clipRule='evenodd'
-                            />
-                        </svg>
-                    </div>
-                </Link>
-            </div>
-
-            {/* Slide Counter */}
-            <div className='absolute top-20 sm:top-24 right-8 text-white/80 font-normal text-sm tracking-wider z-10'>
-                <span className='text-lg font-normal'>
-                    {String(currentSlide + 1).padStart(2, "0")}
-                </span>
-                <span className='mx-2'>/</span>
-                <span>{String(carouselData.length).padStart(2, "0")}</span>
-            </div>
-        </div>
+        </section>
     );
 }

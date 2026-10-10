@@ -1,13 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
-import { X, Menu } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { ImageModal } from "@/components/image-modal";
 import { MasonryGallery } from "@/components/masonry-gallery";
 
-// Sample gallery data - in a real app, this would come from an API or database
 const galleryImages: {
     id: number;
     src: string;
@@ -21,7 +17,7 @@ const galleryImages: {
         src: "/placeholder.svg?height=600&width=400",
         title: "Modern Kitchen Design",
         description:
-            "Sleek contemporary kitchen featuring Nirmala's premium matt finish surfaces in warm earth tones.",
+            "Sleek contemporary kitchen featuring Tsuco's premium matt finish surfaces in warm earth tones.",
         category: "Kitchen",
         size: "tall",
     },
@@ -170,47 +166,37 @@ export default function GalleryPage() {
     };
 
     return (
-        <div className='min-h-screen bg-cream text-warmBrown'>
-            {/* Gallery Content */}
-            <main className='pt-24 pb-20'>
+        <div className='min-h-screen bg-surface'>
+            <main className='pt-28 lg:pt-40 pb-20'>
                 <div className='container-custom'>
-                    {/* Gallery Header */}
-                    <div className='text-center mb-20'>
-                        <h1 className='text-4xl sm:text-5xl md:text-6xl font-bold mb-8 text-warmBrown'>
+                    <div className='text-center mb-14'>
+                        <div className='eyebrow mb-3'>Our Work</div>
+                        <h1 className='section-title text-ink mb-6'>
                             Project Gallery
                         </h1>
-                        <p className='text-xl text-warmBrown/80 max-w-3xl mx-auto font-normal leading-relaxed mb-12'>
+                        <p className='text-ink-secondary max-w-2xl mx-auto mb-10'>
                             Explore our curated collection of premium
-                            installations showcasing Nirmala surfaces in the
-                            world's most prestigious spaces.
+                            installations showcasing Tsuco surfaces in the
+                            world&rsquo;s most prestigious spaces.
                         </p>
 
-                        {/* Category Filter */}
-                        <div className='flex flex-wrap justify-center gap-3 mb-12'>
+                        <div className='flex flex-wrap justify-center gap-3'>
                             {categories.map((category) => (
-                                <Button
+                                <button
                                     key={category}
-                                    variant={
+                                    onClick={() => setSelectedCategory(category)}
+                                    className={
                                         selectedCategory === category
-                                            ? "default"
-                                            : "outline"
-                                    }
-                                    className={`font-normal px-6 py-2 rounded-full transition-all duration-300 ${
-                                        selectedCategory === category
-                                            ? "bg-gradient-to-r from-warmBrown to-softPink text-white hover:from-warmBrown/90 hover:to-softPink/90 shadow-lg"
-                                            : "border-warmBrown text-warmBrown hover:bg-warmBrown hover:text-white hover:border-warmBrown/50"
-                                    }`}
-                                    onClick={() =>
-                                        setSelectedCategory(category)
+                                            ? "chip bg-teal text-white border-teal"
+                                            : "chip hover:border-teal transition-colors"
                                     }
                                 >
                                     {category}
-                                </Button>
+                                </button>
                             ))}
                         </div>
                     </div>
 
-                    {/* Masonry Gallery */}
                     <MasonryGallery
                         images={filteredImages}
                         onImageClick={handleImageClick}
@@ -218,7 +204,6 @@ export default function GalleryPage() {
                 </div>
             </main>
 
-            {/* Image Modal */}
             {selectedImage && (
                 <ImageModal
                     image={selectedImage}

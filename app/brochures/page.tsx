@@ -1,13 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
-import { X, Menu } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { PDFViewer } from "@/components/pdf-viewer";
 import { Brochure } from "@/components/assets/brochure";
 
-// Sample brochure data - in a real app, this would come from an API or database
 const brochureData = [
     {
         id: 1,
@@ -24,57 +20,13 @@ const brochureData = [
         id: 2,
         title: "Premium Care Guide",
         description:
-            "Expert maintenance protocols to preserve the exceptional quality and appearance of your Nirmala surfaces.",
+            "Expert maintenance protocols to preserve the exceptional quality and appearance of your Tsuco surfaces.",
         pdfUrl: "/pdf/Relwood-Brochure.pdf",
         thumbnailUrl: "/images/relwood-brochure.png",
         category: "Sustainable Wood",
         fileSize: "3.2 MB",
         pages: 16,
     },
-    // {
-    //     id: 3,
-    //     title: "Technical Documentation",
-    //     description:
-    //         "Detailed technical specifications and professional installation guidelines for optimal results and longevity.",
-    //     pdfUrl: "/pdf/Nirmala.pdf",
-    //     thumbnailUrl: "/images/nirmala-brochure.png",
-    //     category: "Technical",
-    //     fileSize: "8.7 MB",
-    //     pages: 32,
-    // },
-    // {
-    //     id: 4,
-    //     title: "Kitchen Collection Showcase",
-    //     description:
-    //         "Sophisticated kitchen solutions with meticulously curated color palettes for the modern connoisseur.",
-    //     pdfUrl: "/pdf/Relwood-Brochure.pdf",
-    //     thumbnailUrl: "/images/relwood-brochure.png",
-    //     category: "Collection",
-    //     fileSize: "15.3 MB",
-    //     pages: 24,
-    // },
-    // {
-    //     id: 5,
-    //     title: "Commercial Applications Guide",
-    //     description:
-    //         "Professional workspace solutions featuring architectural elements with geometric precision and durability.",
-    //     pdfUrl: "/pdf/Nirmala.pdf",
-    //     thumbnailUrl: "/images/nirmala-brochure.png",
-    //     category: "Commercial",
-    //     fileSize: "11.8 MB",
-    //     pages: 36,
-    // },
-    // {
-    //     id: 6,
-    //     title: "Sustainability Report",
-    //     description:
-    //         "Our commitment to environmental responsibility and sustainable luxury manufacturing practices.",
-    //     pdfUrl: "/pdf/Relwood-Brochure.pdf",
-    //     thumbnailUrl: "/images/relwood-brochure.png",
-    //     category: "Sustainability",
-    //     fileSize: "5.4 MB",
-    //     pages: 20,
-    // },
 ];
 
 export default function BrochuresPage() {
@@ -91,71 +43,55 @@ export default function BrochuresPage() {
             : brochureData.filter((item) => item.category === selectedCategory);
 
     return (
-        <div className='min-h-screen bg-cream text-warmBrown'>
-            {/* Brochures Content */}
-            <main className='pt-24 pb-20'>
+        <div className='min-h-screen bg-surface'>
+            <main className='pt-28 lg:pt-40 pb-20'>
                 <div className='container-custom'>
-                    {/* Brochures Header */}
-                    <div className='text-center mb-20'>
-                        <div className='flex justify-center mb-8'>
-                            <Brochure className='w-auto h-16 md:h-20 lg:h-24' />
+                    <div className='text-center mb-14'>
+                        <div className='flex justify-center mb-6'>
+                            <Brochure
+                                className='w-auto h-12 md:h-16'
+                                color='#1a1a1a'
+                            />
                         </div>
-                        <p className='text-xl text-warmBrown/80 max-w-3xl mx-auto font-normal leading-relaxed mb-12'>
+                        <p className='text-ink-secondary max-w-2xl mx-auto mb-10'>
                             Access our comprehensive collection of catalogs,
-                            technical documentation, and care guides crafted for
-                            design professionals and discerning clients.
+                            technical documentation, and care guides crafted
+                            for design professionals and discerning clients.
                         </p>
 
-                        {/* Category Filter */}
-                        <div className='flex flex-wrap justify-center gap-3 mb-12'>
+                        <div className='flex flex-wrap justify-center gap-3'>
                             {categories.map((category) => (
-                                <Button
+                                <button
                                     key={category}
-                                    variant={
+                                    onClick={() => setSelectedCategory(category)}
+                                    className={
                                         selectedCategory === category
-                                            ? "default"
-                                            : "outline"
-                                    }
-                                    className={`font-normal px-6 py-2 rounded-full transition-all duration-300 ${
-                                        selectedCategory === category
-                                            ? "bg-gradient-to-r from-warmBrown to-softPink text-white hover:from-warmBrown/90 hover:to-softPink/90 shadow-lg"
-                                            : "border-warmBrown text-warmBrown hover:bg-warmBrown hover:text-white hover:border-warmBrown/50"
-                                    }`}
-                                    onClick={() =>
-                                        setSelectedCategory(category)
+                                            ? "chip bg-teal text-white border-teal"
+                                            : "chip hover:border-teal transition-colors"
                                     }
                                 >
                                     {category}
-                                </Button>
+                                </button>
                             ))}
                         </div>
                     </div>
 
-                    {/* Brochures Grid */}
-                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
+                    <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto'>
                         {filteredBrochures.map((brochure) => (
-                            <div key={brochure.id} className='group'>
-                                <div className='relative'>
-                                    <div className='absolute -inset-1 bg-gradient-to-r from-warmBrown/20 to-softPink/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition-opacity duration-300'></div>
-                                    <div className='relative'>
-                                        <PDFViewer
-                                            title={brochure.title}
-                                            description={brochure.description}
-                                            pdfUrl={brochure.pdfUrl}
-                                            thumbnailUrl={brochure.thumbnailUrl}
-                                        />
-                                    </div>
-                                </div>
-                                <div className='mt-4 px-2'>
-                                    <div className='flex items-center justify-between text-sm text-warmBrown/60 font-normal'>
-                                        <span className='flex items-center'>
-                                            <div className='w-2 h-2 bg-warmBrown rounded-full mr-2'></div>
-                                            {brochure.pages} pages
-                                        </span>
-                                        <span className='text-warmBrown/70'>
-                                            {brochure.fileSize}
-                                        </span>
-                                    </div>
+                            <div key={brochure.id}>
+                                <PDFViewer
+                                    title={brochure.title}
+                                    description={brochure.description}
+                                    pdfUrl={brochure.pdfUrl}
+                                    thumbnailUrl={brochure.thumbnailUrl}
+                                    category={brochure.category}
+                                />
+                                <div className='mt-3 px-1 flex items-center justify-between text-xs text-ink-muted'>
+                                    <span className='flex items-center gap-2'>
+                                        <span className='h-1.5 w-1.5 rounded-full bg-teal' />
+                                        {brochure.pages} pages
+                                    </span>
+                                    <span>{brochure.fileSize}</span>
                                 </div>
                             </div>
                         ))}

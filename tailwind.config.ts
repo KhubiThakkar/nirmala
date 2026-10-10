@@ -13,42 +13,41 @@ const config: Config = {
     theme: {
         container: {
             center: true,
-            padding: "2rem",
+            padding: "1.5rem",
             screens: {
-                "2xl": "1400px",
+                "2xl": "1200px",
             },
         },
         extend: {
             fontFamily: {
-                didact: ["var(--font-didact)", "Arial", "sans-serif"],
-                poppins: ["var(--font-poppins)", "Arial", "sans-serif"],
-                tajawal: ["var(--font-tajawal)", "Arial", "sans-serif"],
+                serif: ["var(--font-cormorant)", "Georgia", "serif"],
+                sans: ["var(--font-ubuntu)", "Arial", "sans-serif"],
+                // legacy aliases kept so any stray references don't break the build
+                didact: ["var(--font-cormorant)", "Georgia", "serif"],
+                poppins: ["var(--font-ubuntu)", "Arial", "sans-serif"],
+                tajawal: ["var(--font-ubuntu)", "Arial", "sans-serif"],
             },
             colors: {
-                border: "hsl(var(--border))",
+                border: "var(--border)",
                 input: "hsl(var(--input))",
                 ring: "hsl(var(--ring))",
                 background: "hsl(var(--background))",
                 foreground: "hsl(var(--foreground))",
                 primary: {
-                    DEFAULT: "#8C8073",
-                    foreground: "#FFFFFF",
-                    light: "#A69588",
-                    dark: "#6B5D52",
+                    DEFAULT: "hsl(var(--primary))",
+                    foreground: "hsl(var(--primary-foreground))",
                 },
                 secondary: {
-                    DEFAULT: "#FFD8E8",
-                    foreground: "#8C8073",
-                    light: "#FFE5F0",
-                    dark: "#F5C2D6",
+                    DEFAULT: "hsl(var(--secondary))",
+                    foreground: "hsl(var(--secondary-foreground))",
                 },
                 accent: {
-                    DEFAULT: "#F8F6F3",
-                    foreground: "#8C8073",
+                    DEFAULT: "hsl(var(--accent-hsl))",
+                    foreground: "hsl(var(--accent-foreground))",
                 },
                 muted: {
-                    DEFAULT: "#F8F6F3",
-                    foreground: "#8C8073",
+                    DEFAULT: "hsl(var(--muted))",
+                    foreground: "hsl(var(--muted-foreground))",
                 },
                 destructive: {
                     DEFAULT: "hsl(var(--destructive))",
@@ -62,14 +61,41 @@ const config: Config = {
                     DEFAULT: "hsl(var(--card))",
                     foreground: "hsl(var(--card-foreground))",
                 },
-                cream: "#F8F6F3",
-                warmBrown: "#8C8073",
-                softPink: "#FFD8E8",
+                // Warm Atelier raw tokens — used directly in bespoke sections
+                surface: "var(--surface)",
+                "surface-raised": "var(--surface-raised)",
+                "surface-elevated": "var(--surface-elevated)",
+                "surface-sand": "var(--surface-sand)",
+                "surface-dark": "var(--surface-dark)",
+                "surface-footer": "var(--surface-footer)",
+                teal: {
+                    DEFAULT: "var(--accent)",
+                    hover: "var(--accent-hover)",
+                },
+                ink: {
+                    DEFAULT: "var(--text-primary)",
+                    secondary: "var(--text-secondary)",
+                    muted: "var(--text-muted)",
+                },
+                "on-dark": {
+                    DEFAULT: "var(--text-on-dark)",
+                    muted: "var(--text-on-dark-muted)",
+                },
+                hairline: "var(--border)",
+                "hairline-on-dark": "var(--border-on-dark)",
+                cream: "var(--surface)",
+                warmBrown: "var(--text-primary)",
+                softPink: "var(--surface-sand)",
             },
             borderRadius: {
-                lg: "1rem",
-                md: "0.75rem",
-                sm: "0.5rem",
+                sm: "var(--radius-sm)",
+                md: "var(--radius-md)",
+                lg: "var(--radius-lg)",
+                xl: "var(--radius-xl)",
+                pill: "var(--radius-pill)",
+            },
+            maxWidth: {
+                shell: "1320px",
             },
             keyframes: {
                 "accordion-down": {
@@ -81,14 +107,19 @@ const config: Config = {
                     to: { height: "0" },
                 },
                 "fade-in": {
-                    from: { opacity: "0", transform: "translateY(20px)" },
+                    from: { opacity: "0", transform: "translateY(24px)" },
                     to: { opacity: "1", transform: "translateY(0)" },
+                },
+                marquee: {
+                    from: { transform: "translateX(0)" },
+                    to: { transform: "translateX(-50%)" },
                 },
             },
             animation: {
                 "accordion-down": "accordion-down 0.2s ease-out",
                 "accordion-up": "accordion-up 0.2s ease-out",
-                "fade-in": "fade-in 0.6s ease-out",
+                "fade-in": "fade-in 0.6s cubic-bezier(.22,.61,.36,1)",
+                marquee: "marquee 40s linear infinite",
             },
         },
     },

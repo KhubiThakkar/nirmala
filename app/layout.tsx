@@ -1,37 +1,31 @@
 import type React from "react";
 import "./globals.css";
 import type { Metadata } from "next";
-import { Didact_Gothic, Poppins, Tajawal } from "next/font/google";
+import { Cormorant_Garamond, Ubuntu } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
 import { WhatsAppButton } from "@/components/whatsapp-button";
 
-// Elegant Google-font setup  ────────────────────────────────────────────────
+// Warm Atelier font pairing  ────────────────────────────────────────────────
 
-const didactGothic = Didact_Gothic({
+const cormorantGaramond = Cormorant_Garamond({
     subsets: ["latin"],
-    weight: ["400"],
-    variable: "--font-didact",
+    weight: ["300", "400", "500"],
+    style: ["normal", "italic"],
+    variable: "--font-cormorant",
     display: "swap",
 });
 
-const poppins = Poppins({
+const ubuntu = Ubuntu({
     subsets: ["latin"],
-    weight: ["300", "400", "500", "600", "700"],
-    variable: "--font-poppins",
-    display: "swap",
-});
-
-const tajawal = Tajawal({
-    subsets: ["latin"],
-    weight: ["200", "300", "400", "500", "700"],
-    style: "normal",
-    variable: "--font-tajawal",
+    weight: ["300", "400", "500", "700"],
+    variable: "--font-ubuntu",
     display: "swap",
 });
 // Site-wide metadata  ───────────────────────────────────────────────────────
 export const metadata: Metadata = {
-    title: "Nirmala – Building Beautifully!",
+    title: "Tsuco — The Surface Company",
     description:
         "Your ultimate destination for premium building decorative materials. Where all your interior design needs find their perfect home under one roof.",
 };
@@ -46,14 +40,14 @@ export default function RootLayout({
             lang='en'
             className={cn(
                 "scroll-smooth",
-                didactGothic.variable, // makes Didact Gothic available via var(--font-didact)
-                poppins.variable, // makes Poppins available via var(--font-poppins)
-                tajawal.variable // makes Tajawal available via var(--font-tajawal)
+                cormorantGaramond.variable, // makes Cormorant Garamond available via var(--font-cormorant)
+                ubuntu.variable // makes Ubuntu available via var(--font-ubuntu)
             )}
         >
             <body>
                 <Header />
                 {children}
+                <Footer />
                 <WhatsAppButton
                     phoneNumber='+919824042743'
                     message="Hello! I'm interested in your building materials and services."

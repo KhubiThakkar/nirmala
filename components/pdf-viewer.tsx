@@ -26,13 +26,23 @@ export function PDFViewer({
 }: PDFViewerProps) {
     const [isOpen, setIsOpen] = useState(false);
 
-    const handleDownload = () => {
-        const link = document.createElement("a");
-        link.href = pdfUrl;
-        link.download = `${title}.pdf`;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+    const handleDownload = async () => {
+        try {
+            const response = await fetch(pdfUrl);
+            const blob = await response.blob();
+            const blobUrl = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.href = blobUrl;
+            link.download = `${title}.pdf`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(blobUrl);
+        } catch {
+            // Fallback for browsers that block the fetch (e.g. offline/CORS) —
+            // opening in a new tab still lets the user save it manually.
+            window.open(pdfUrl, "_blank", "noopener,noreferrer");
+        }
     };
 
     return (
@@ -78,13 +88,13 @@ export function PDFViewer({
                             <Eye className='h-4 w-4' />
                             Preview
                         </button>
-                        <DialogContent className='max-w-4xl h-[80vh] rounded-lg bg-surface-raised border-[color:var(--border-header)]'>
-                            <DialogTitle className='text-ink'>
+                        <DialogContent className='max-w-4xl h-[80vh] flex flex-col rounded-lg bg-surface-raised border-[color:var(--border-header)]'>
+                            <DialogTitle className='text-ink flex-shrink-0'>
                                 {title}
                             </DialogTitle>
-                            <div className='bg-surface-elevated rounded-md overflow-hidden border border-[color:var(--border-header)] flex-1'>
+                            <div className='flex-1 min-h-0 bg-surface-elevated rounded-md overflow-hidden border border-[color:var(--border-header)]'>
                                 <iframe
-                                    src={`${pdfUrl}#toolbar=1&scrollbar=1&zoom=20&view=FitH`}
+                                    src={`${pdfUrl}#toolbar=1&view=FitH`}
                                     className='w-full h-full'
                                     title={title}
                                 />

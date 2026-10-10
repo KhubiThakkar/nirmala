@@ -14,18 +14,32 @@ export default function ContactForm() {
     }
 
     return (
-        <form className='space-y-6' onSubmit={handleSubmit}>
-            <div>
-                <label htmlFor='name' className='field-label'>
-                    Full Name
-                </label>
-                <input
-                    id='name'
-                    name='name'
-                    type='text'
-                    className='field-input'
-                    placeholder='Your full name'
-                />
+        <form className='space-y-5' onSubmit={handleSubmit}>
+            <div className='field-row'>
+                <div>
+                    <label htmlFor='firstName' className='field-label'>
+                        First Name
+                    </label>
+                    <input
+                        id='firstName'
+                        name='firstName'
+                        type='text'
+                        className='field-input'
+                        placeholder='First name'
+                    />
+                </div>
+                <div>
+                    <label htmlFor='lastName' className='field-label'>
+                        Last Name
+                    </label>
+                    <input
+                        id='lastName'
+                        name='lastName'
+                        type='text'
+                        className='field-input'
+                        placeholder='Last name'
+                    />
+                </div>
             </div>
             <div>
                 <label htmlFor='email' className='field-label'>
@@ -53,7 +67,7 @@ export default function ContactForm() {
                     name='message'
                     rows={5}
                     style={{ resize: "none" }}
-                    className='field-input py-3'
+                    className='field-input'
                     placeholder='Tell us about your vision and requirements...'
                 ></textarea>
                 <ValidationError
@@ -62,7 +76,7 @@ export default function ContactForm() {
                     errors={state.errors}
                 />
             </div>
-            <div className='flex flex-col gap-3'>
+            <div className='flex flex-col gap-3 pt-1'>
                 <button type='submit' className='btn btn-primary w-full'>
                     Schedule Consultation
                 </button>

@@ -52,12 +52,13 @@ const slides = [
     },
 ];
 
-const swatchTones = [
-    "var(--text-primary)",
-    "var(--surface-sand)",
-    "var(--accent)",
-    "var(--border-header)",
-];
+// swatchTones was used by the Sample Finishes block, commented out below.
+// const swatchTones = [
+//     "var(--text-primary)",
+//     "var(--surface-sand)",
+//     "var(--accent)",
+//     "var(--border-header)",
+// ];
 
 const AUTOPLAY_MS = 6000;
 
@@ -95,7 +96,7 @@ export function HeroCarousel() {
     return (
         <section
             id='home'
-            className='pt-28 lg:pt-36 pb-10 lg:pb-16'
+            className='pt-24 lg:pt-28 pb-10 lg:pb-16'
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
         >
@@ -217,41 +218,47 @@ export function HeroCarousel() {
                                 {slide.body}
                             </p>
 
-                            <div className='h-px bg-[color:var(--border-header)] mb-6' />
-
-                            <div className='space-y-3 mb-6'>
-                                {slide.specs.map((row) => (
-                                    <div
-                                        key={row.label}
-                                        className='flex items-center justify-between text-sm'
-                                    >
-                                        <span className='nav-text text-ink-muted'>
-                                            {row.label}
-                                        </span>
-                                        <span className='font-semibold text-ink'>
-                                            {row.value}
-                                        </span>
-                                    </div>
-                                ))}
-                            </div>
-
-                            <div className='flex items-center justify-between mb-3'>
-                                <span className='nav-text text-ink-muted'>
-                                    Sample Finishes
-                                </span>
-                                <Link href='/brochures' className='link-arrow'>
-                                    View All
-                                </Link>
-                            </div>
-                            <div className='flex gap-2.5 mb-8'>
-                                {swatchTones.map((tone, i) => (
-                                    <span
-                                        key={i}
-                                        className='h-10 w-10 rounded-md border border-[color:var(--border-header)]'
-                                        style={{ background: tone }}
-                                    />
-                                ))}
-                            </div>
+                            {/*
+                             * Showroom / Established / Sample Finishes block — commented out
+                             * for now, it doesn't line up with the current slide imagery.
+                             * Revisit once we have content that matches. Uncomment to restore:
+                             *
+                             * <div className='h-px bg-[color:var(--border-header)] mb-6' />
+                             *
+                             * <div className='space-y-3 mb-6'>
+                             *     {slide.specs.map((row) => (
+                             *         <div
+                             *             key={row.label}
+                             *             className='flex items-center justify-between text-sm'
+                             *         >
+                             *             <span className='nav-text text-ink-muted'>
+                             *                 {row.label}
+                             *             </span>
+                             *             <span className='font-semibold text-ink'>
+                             *                 {row.value}
+                             *             </span>
+                             *         </div>
+                             *     ))}
+                             * </div>
+                             *
+                             * <div className='flex items-center justify-between mb-3'>
+                             *     <span className='nav-text text-ink-muted'>
+                             *         Sample Finishes
+                             *     </span>
+                             *     <Link href='/brochures' className='link-arrow'>
+                             *         View All
+                             *     </Link>
+                             * </div>
+                             * <div className='flex gap-2.5 mb-8'>
+                             *     {swatchTones.map((tone, i) => (
+                             *         <span
+                             *             key={i}
+                             *             className='h-10 w-10 rounded-md border border-[color:var(--border-header)]'
+                             *             style={{ background: tone }}
+                             *         />
+                             *     ))}
+                             * </div>
+                             */}
 
                             <div className='flex flex-col gap-3'>
                                 <Link

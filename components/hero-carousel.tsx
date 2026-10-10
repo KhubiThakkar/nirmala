@@ -96,7 +96,7 @@ export function HeroCarousel() {
     return (
         <section
             id='home'
-            className='pt-24 lg:pt-28 pb-10 lg:pb-16'
+            className='pt-32 lg:pt-36 pb-10 lg:pb-16'
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
         >

@@ -7,7 +7,6 @@ import { Menu, X } from "lucide-react";
 
 const navigationItems = [
     { href: "/", label: "HOME" },
-    { href: "/#about", label: "ABOUT" },
     { href: "/brochures", label: "BROCHURES" },
     { href: "/#contact", label: "CONTACT" },
 ];
@@ -289,13 +288,6 @@ export function Header() {
                             {item.label.charAt(0) + item.label.slice(1).toLowerCase()}
                         </Link>
                     ))}
-                    <Link
-                        href='/#contact'
-                        onClick={() => setIsMenuOpen(false)}
-                        className='pill-cta w-fit mt-4'
-                    >
-                        QUICK INQUIRY
-                    </Link>
                 </nav>
             </div>
         </header>

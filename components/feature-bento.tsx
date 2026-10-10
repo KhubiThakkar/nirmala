@@ -14,7 +14,7 @@ function Tile({
     eyebrow: string;
     title: string[];
     description: string;
-    cta: { label: string; href: string; style: "primary" | "link" };
+    cta?: { label: string; href: string; style: "primary" | "link" };
     className?: string;
 }) {
     return (
@@ -48,7 +48,7 @@ function Tile({
                 <p className='text-sm text-on-dark-muted leading-relaxed mb-5 max-w-[42ch]'>
                     {description}
                 </p>
-                {cta.style === "primary" ? (
+                {cta && (cta.style === "primary" ? (
                     <Link href={cta.href} className='btn btn-primary w-fit'>
                         {cta.label}
                         <ArrowUpRight className='h-4 w-4' />
@@ -57,7 +57,7 @@ function Tile({
                     <Link href={cta.href} className='link-arrow link-arrow-on-dark w-fit'>
                         {cta.label}
                     </Link>
-                )}
+                ))}
             </div>
         </div>
     );
@@ -94,7 +94,6 @@ export function FeatureBento() {
                             eyebrow='Our Story'
                             title={["The Art of", "Tsuco"]}
                             description='Our dedication to innovation and craftsmanship for discerning architects, designers and connoisseurs.'
-                            cta={{ label: "Learn More", href: "/#about", style: "link" }}
                         />
                         <Tile
                             image='/images/hero-image3.jpeg'
@@ -107,14 +106,9 @@ export function FeatureBento() {
                 </div>
 
                 <div className='h-px bg-[color:var(--border-on-dark)] mt-10 mb-6' />
-                <div className='flex flex-wrap items-center justify-between gap-3'>
-                    <span className='nav-text text-on-dark-muted'>
-                        Pioneers in Luxury Laminates & Décor
-                    </span>
-                    <Link href='/brochures' className='link-arrow link-arrow-on-dark'>
-                        View All Brochures
-                    </Link>
-                </div>
+                <span className='nav-text text-on-dark-muted'>
+                    Pioneers in Luxury Laminates & Décor
+                </span>
             </div>
         </section>
     );

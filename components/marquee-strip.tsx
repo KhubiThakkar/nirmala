@@ -8,8 +8,14 @@ const items = [
     "SUPER MATT FINISH",
 ];
 
+// Repeat the sequence enough times that a single "half" of the animated
+// track (see the -50% keyframe) is always wider than the viewport —
+// otherwise the strip runs out of content and shows a blank gap before
+// looping on wide screens.
+const sequence = Array.from({ length: 4 }, () => items).flat();
+
 export function MarqueeStrip() {
-    const loop = [...items, ...items];
+    const loop = [...sequence, ...sequence];
 
     return (
         <div

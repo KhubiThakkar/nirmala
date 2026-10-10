@@ -8,8 +8,14 @@ const clientLogos = [
     { id: 7, name: "Taj", logo: "/images/taj.jpeg" },
 ];
 
+// Repeat the sequence enough times that a single "half" of the animated
+// track (see the -50% keyframe) is always wider than the viewport —
+// otherwise the strip runs out of logos and shows a blank gap before
+// looping on wide screens.
+const sequence = Array.from({ length: 4 }, () => clientLogos).flat();
+
 export function ClientBanner() {
-    const duplicated = [...clientLogos, ...clientLogos];
+    const duplicated = [...sequence, ...sequence];
 
     return (
         <section className='section-pad bg-surface-raised'>
@@ -23,17 +29,17 @@ export function ClientBanner() {
             </div>
 
             <div className='marquee-wrapper relative overflow-hidden'>
-                <div className='marquee-track items-center' style={{ gap: "32px" }}>
+                <div className='marquee-track items-center' style={{ gap: "40px" }}>
                     {duplicated.map((client, index) => (
                         <div
                             key={`${client.id}-${index}`}
-                            className='flex-shrink-0 w-[160px] flex items-center justify-center'
+                            className='flex-shrink-0 w-[220px] flex items-center justify-center'
                         >
-                            <div className='card-surface px-6 py-5 flex items-center justify-center w-full'>
+                            <div className='card-surface px-8 py-7 flex items-center justify-center w-full'>
                                 <img
                                     src={client.logo}
                                     alt={client.name}
-                                    className='h-10 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300'
+                                    className='h-16 w-auto object-contain'
                                 />
                             </div>
                         </div>

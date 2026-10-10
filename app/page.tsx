@@ -101,7 +101,7 @@ export default function HomePage() {
                                                 Email
                                             </div>
                                             <div className='text-sm text-ink-secondary'>
-                                                info@bynirmala.in
+                                                info@thesurfacecompany.in
                                             </div>
                                         </div>
                                     </div>

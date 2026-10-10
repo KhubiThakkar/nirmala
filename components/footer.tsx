@@ -93,7 +93,7 @@ export function Footer() {
                             Get in Touch
                         </h4>
                         <ul className='space-y-3 text-[13px] text-on-dark-muted'>
-                            <li>info@bynirmala.in</li>
+                            <li>info@thesurfacecompany.in</li>
                             <li>9824042743 / 9427037410</li>
                             <li>Mon–Sat, 10am–8pm</li>
                         </ul>

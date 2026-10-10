@@ -105,7 +105,7 @@ export function PDFViewer({
                     <button
                         type='button'
                         onClick={handleDownload}
-                        className='btn btn-ghost w-full'
+                        className='btn btn-secondary w-full'
                     >
                         <Download className='h-4 w-4' />
                         Download

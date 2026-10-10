@@ -205,8 +205,8 @@ export function Header() {
 
     return (
         <header className='fixed top-0 inset-x-0 z-50 bg-surface-raised border-b border-[color:var(--border-header)]'>
-            {/* Logo bar */}
-            <div className='container-custom h-16 flex items-center justify-center border-b border-[color:var(--border-header)]'>
+            {/* Logo bar — on mobile/tablet this is the only row (logo + hamburger inline) */}
+            <div className='container-custom h-16 flex items-center justify-between lg:justify-center gap-4 lg:border-b lg:border-[color:var(--border-header)]'>
                 <Link href='/' className='flex items-center'>
                     <Image
                         src='/images/tsuco_logo_transparent.png'
@@ -217,11 +217,25 @@ export function Header() {
                         priority
                     />
                 </Link>
+
+                <button
+                    type='button'
+                    aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+                    aria-expanded={isMenuOpen}
+                    onClick={() => setIsMenuOpen((v) => !v)}
+                    className='lg:hidden flex h-11 w-11 items-center justify-center rounded-full border border-[color:var(--border-header)] text-ink hover:bg-surface-elevated transition-colors'
+                >
+                    {isMenuOpen ? (
+                        <X className='h-5 w-5' />
+                    ) : (
+                        <Menu className='h-5 w-5' />
+                    )}
+                </button>
             </div>
 
-            {/* Nav row */}
-            <div className='container-custom h-16 flex items-center justify-between gap-4'>
-                <nav className='hidden lg:flex items-center gap-8 overflow-x-auto scrollbar-hide'>
+            {/* Nav row — desktop only */}
+            <div className='hidden lg:flex container-custom h-16 items-center justify-between gap-4'>
+                <nav className='flex items-center gap-8 overflow-x-auto scrollbar-hide'>
                     {navigationItems.map((item) => (
                         <Link
                             key={item.href}
@@ -233,19 +247,12 @@ export function Header() {
                     ))}
                 </nav>
 
-                <Link
-                    href='/#contact'
-                    className='pill-cta hidden sm:inline-flex lg:hidden'
-                >
-                    QUICK INQUIRY
-                </Link>
-
                 <button
                     type='button'
                     aria-label={isMenuOpen ? "Close menu" : "Open menu"}
                     aria-expanded={isMenuOpen}
                     onClick={() => setIsMenuOpen((v) => !v)}
-                    className='flex h-11 w-11 items-center justify-center rounded-full border border-[color:var(--border-header)] text-ink hover:bg-surface-elevated transition-colors ml-auto lg:ml-0'
+                    className='flex h-11 w-11 items-center justify-center rounded-full border border-[color:var(--border-header)] text-ink hover:bg-surface-elevated transition-colors'
                 >
                     {isMenuOpen ? (
                         <X className='h-5 w-5' />

@@ -3,7 +3,6 @@ import Link from "next/link";
 
 const navigateLinks = [
     { href: "/", label: "Home" },
-    { href: "/#about", label: "About" },
     { href: "/brochures", label: "Brochures" },
     { href: "/#contact", label: "Contact" },
 ];
@@ -97,12 +96,6 @@ export function Footer() {
                             <li>9824042743 / 9427037410</li>
                             <li>Mon–Sat, 10am–8pm</li>
                         </ul>
-                        <Link
-                            href='/#contact'
-                            className='link-arrow link-arrow-on-dark mt-4 inline-flex'
-                        >
-                            Contact Us
-                        </Link>
                     </div>
 
                     <div>

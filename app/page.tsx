@@ -68,7 +68,7 @@ export default function HomePage() {
             <FeatureBento />
 
             {/* Contact */}
-            <section id='contact' className='scroll-mt-32 section-pad bg-surface-raised'>
+            <section id='contact' className='scroll-mt-20 lg:scroll-mt-32 section-pad bg-surface-raised'>
                 <div className='container-custom'>
                     <div className='text-center max-w-[640px] mx-auto mb-14'>
                         <div className='eyebrow mb-3'>Get In Touch</div>

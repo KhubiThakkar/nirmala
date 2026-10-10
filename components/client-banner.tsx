@@ -29,17 +29,20 @@ export function ClientBanner() {
             </div>
 
             <div className='marquee-wrapper relative overflow-hidden'>
-                <div className='marquee-track items-center' style={{ gap: "40px" }}>
+                <div
+                    className='marquee-track items-center'
+                    style={{ gap: "32px", animationDuration: "180s" }}
+                >
                     {duplicated.map((client, index) => (
                         <div
                             key={`${client.id}-${index}`}
-                            className='flex-shrink-0 w-[220px] flex items-center justify-center'
+                            className='flex-shrink-0 w-[300px] flex items-center justify-center'
                         >
-                            <div className='card-surface px-8 py-7 flex items-center justify-center w-full'>
+                            <div className='card-surface px-3 py-3 flex items-center justify-center w-full'>
                                 <img
                                     src={client.logo}
                                     alt={client.name}
-                                    className='h-16 w-auto object-contain'
+                                    className='h-32 w-auto max-w-full object-contain'
                                 />
                             </div>
                         </div>

@@ -22,7 +22,10 @@ export function MarqueeStrip() {
             className='marquee-wrapper w-full bg-surface-dark overflow-hidden py-4'
             role='presentation'
         >
-            <div className='marquee-track items-center' style={{ gap: "48px" }}>
+            <div
+                className='marquee-track items-center'
+                style={{ gap: "48px", animationDuration: "150s" }}
+            >
                 {loop.map((item, index) => (
                     <span
                         key={`${item}-${index}`}
